@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import AscButton from '../../components/atoms/AscButton';
+import AscButton from '../../components/atoms/atomButton/AscButton';
 
 describe('<AscButton atom test>', () => {
   const { getByText } = render(<AscButton />);

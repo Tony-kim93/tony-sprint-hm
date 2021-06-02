@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchButton from '../atoms/SearchButton';
+import SearchButton from '../atoms/atomButton/SearchButton';
 import SearchInput from '../atoms/SearchInput';
 
 export default function MainSearchItem() {

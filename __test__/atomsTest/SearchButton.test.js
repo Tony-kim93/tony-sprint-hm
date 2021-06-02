@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import SearchButton from '../../components/atoms/SearchButton';
+import SearchButton from '../../components/atoms/atomButton/SearchButton';
 
 describe('<SearchButton atom test>', () => {
   const { getByText } = render(<SearchButton />);

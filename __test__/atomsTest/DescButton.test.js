@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import DescButton from '../../components/atoms/DescButton';
+import DescButton from '../../components/atoms/atomButton/DescButton';
 
 describe('<DescButton atom test>', () => {
   const { getByText } = render(<DescButton />);
