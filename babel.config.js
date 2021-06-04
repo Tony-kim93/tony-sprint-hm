@@ -4,5 +4,5 @@ module.exports = {
     '@babel/preset-typescript',
     'next/babel'
   ],
-  plugin: ['inline-react-svg']
+  plugins: ['babel-plugin-styled-components']
 };

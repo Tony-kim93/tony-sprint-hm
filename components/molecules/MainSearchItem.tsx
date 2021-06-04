@@ -4,9 +4,9 @@ import SearchInput from '../atoms/SearchInput';
 
 export default function MainSearchItem() {
   return (
-    <div>
+    <form>
       <SearchInput />
       <SearchButton />
-    </div>
+    </form>
   );
 }

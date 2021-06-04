@@ -3,9 +3,9 @@ import { call, fork, put, takeLatest } from 'redux-saga/effects';
 import * as actions from '../modules/MainCard';
 import { getMainPageCard } from './sagaAPI/sagaAPI';
 
-function* getMainCard() {
+function* getMainCard(query: object) {
   try {
-    const response: AxiosResponse = yield call(getMainPageCard);
+    const response: AxiosResponse = yield call(getMainPageCard, query);
     yield put(actions.getMainCardSuccess(response));
   } catch (err) {
     console.log(err);

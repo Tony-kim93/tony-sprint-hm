@@ -1,5 +1,16 @@
 import React from 'react';
+import * as S from '../../../styles/globalStyles';
+import { useDispatch } from 'react-redux';
+import * as actions from '../../../store/modules/RootActions';
 
 export default function AscButton() {
-  return <button>DESC</button>;
+  const dispatch = useDispatch();
+  const handleDesc = () => {
+    dispatch(actions.getMainCard('&order=DESC'));
+  };
+  return (
+    <S.MainEngineButton filterBtn onClick={handleDesc}>
+      DESC
+    </S.MainEngineButton>
+  );
 }

@@ -1,9 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import * as S from '../../../styles/globalStyles';
 
 export default function SearchButton() {
-  function test(): void {
-    console.log('real?');
-  }
-  return <button onClick={test}>Search</button>;
+  return <S.MainEngineButton searchBtn>Search</S.MainEngineButton>;
 }

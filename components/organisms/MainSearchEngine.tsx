@@ -1,14 +1,12 @@
 import React from 'react';
 import MainSearchItem from '../molecules/MainSearchItem';
-import AscButton from '../atoms/atomButton/AscButton';
-import DescButton from '../atoms/atomButton/DescButton';
+import MainPageFilterButton from '../molecules/MainPageFilterButton';
 
 export default function MainSearchEngine() {
   return (
     <div>
       <MainSearchItem />
-      <AscButton />
-      <DescButton />
+      <MainPageFilterButton />
     </div>
   );
 }

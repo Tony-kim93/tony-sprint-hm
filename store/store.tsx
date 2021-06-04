@@ -1,12 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import logger from 'redux-logger';
-import createSagaMiddleware from 'redux-saga';
-import RootReducer from './modules/RootReducer';
-import RootSaga from './sagas/RootSaga';
-import { createWrapper } from 'next-redux-wrapper';
+// import { configureStore } from '@reduxjs/toolkit';
+// import logger from 'redux-logger';
+// import createSagaMiddleware from 'redux-saga';
+// import RootReducer from './modules/RootReducer';
+// import RootSaga from './sagas/RootSaga';
+// import { createWrapper } from 'next-redux-wrapper';
 
-const sagaMiddleware = createSagaMiddleware();
-const middlewares = [logger, sagaMiddleware];
+// const sagaMiddleware = createSagaMiddleware();
+// const middlewares = [logger, sagaMiddleware];
 
 // export const store = configureStore({
 //   devTools: true,
@@ -15,14 +15,25 @@ const middlewares = [logger, sagaMiddleware];
 // });
 
 // sagaMiddleware.run(RootSaga);
-const makeStore = () => {
+
+import { configureStore } from '@reduxjs/toolkit';
+import logger from 'redux-logger';
+import createSagaMiddleware from 'redux-saga';
+import RootReducer from './modules/RootReducer';
+import RootSaga from './sagas/RootSaga';
+import { createWrapper } from 'next-redux-wrapper';
+
+const makeStore: any = () => {
+  const sagaMiddleware = createSagaMiddleware();
+  const middlewares = [logger, sagaMiddleware];
   const store = configureStore({
     devTools: true,
     middleware: middlewares,
     reducer: RootReducer
   });
   sagaMiddleware.run(RootSaga);
+
   return store;
 };
 
-export const wrapper: any = createWrapper(makeStore, { debug: false });
+export const wrapper = createWrapper(makeStore, { debug: false });

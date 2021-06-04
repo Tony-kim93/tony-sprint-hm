@@ -5,6 +5,7 @@ interface MainCardType {
   mainCardData: { MainCard: any };
 }
 
+// 초기 메인페이지 50
 export const GET_MAIN_CARD = 'card/GET_MAIN_CARD';
 export const GET_MAIN_CARD_SUCCESS = 'card/GET_MAIN_CARD_SUCCESS';
 export const GET_MAIN_CARD_FAILURE = 'card/GET_MAIN_CARD_FAILURE';
@@ -22,7 +23,7 @@ export const getMainCard = createAction(
 );
 export const getMainCardSuccess = createAction(
   GET_MAIN_CARD_SUCCESS,
-  function prerpare(card: any) {
+  function prepare(card: any) {
     return {
       payload: {
         card
@@ -53,7 +54,7 @@ export const getMainCardLoading = createAction(
 
 const initialState: MainCardType = {
   isLoading: false,
-  mainCardData: { MainCard: { MainCardData: { card: { data: {} } } } }
+  mainCardData: { MainCard: {} }
 };
 
 const reducer = createReducer(initialState, {
