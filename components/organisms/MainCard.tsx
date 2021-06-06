@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '../../store/modules/RootActions';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MainSingleCard from '../molecules/MainSingleCard';
+import { useDispatch } from 'react-redux';
+import * as actions from '../../store/modules/RootActions';
 
 const GridMainCard = styled.div`
   display: grid;
@@ -12,15 +13,40 @@ const GridMainCard = styled.div`
 `;
 
 export default function MainCard() {
+  const { isLoading, mainCardData, order } = useSelector(
+    (state: any) => state.MainCard
+  );
+
   const dispatch = useDispatch();
-  const getStoreData = useSelector((state: any) => state.MainCard.mainCardData);
+  let pageSet = 0;
+
   useEffect(() => {
-    dispatch(actions.getMainCard(''));
-  }, []);
-  const CardData = getStoreData.card;
+    const handleScroll = () => {
+      if (
+        window.scrollY + document.documentElement.clientHeight >
+        document.documentElement.scrollHeight - 1
+      ) {
+        pageSet++;
+        if (pageSet < 4)
+          dispatch(
+            actions.getMainCard(`limit=50&page=${pageSet}&order=${order}`)
+          );
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll); //clean up
+    };
+  }, [order]);
+
+  useEffect(() => {
+    console.log('aa');
+    dispatch(actions.getMainCardOrder(`limit=50&order=${order}`));
+  }, [order]);
+
   return (
     <GridMainCard>
-      {CardData?.data.map((item: any) => {
+      {mainCardData.MainCard.card?.map((item: any, index: number) => {
         return (
           <div key={item.id}>
             <MainSingleCard

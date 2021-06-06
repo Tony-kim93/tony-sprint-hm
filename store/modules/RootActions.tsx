@@ -2,5 +2,8 @@ export {
   getMainCard,
   getMainCardSuccess,
   getMainCardFailure,
-  getMainCardLoading
+  getMainCardLoading,
+  changeOrder,
+  getMainCardOrder,
+  getMainCardOrderSuccess
 } from './MainCard';

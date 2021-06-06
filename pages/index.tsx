@@ -1,8 +1,8 @@
 import React from 'react';
 import MainPage from '../components/templates/MainPage';
 import styled from 'styled-components';
-import { wrapper } from '../store/store';
 import * as actions from '../store/modules/RootActions';
+import { wrapper } from '../store/store';
 import { GetServerSideProps } from 'next';
 import { END } from '@redux-saga/core';
 
@@ -23,7 +23,7 @@ const Home = () => {
 };
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps(async ({ store }) => {
-    store.dispatch(actions.getMainCard(''));
+    store.dispatch(actions.getMainCard('limit=50&order=ASC'));
     store.dispatch(END);
     await store.sagaTask?.toPromise();
   });

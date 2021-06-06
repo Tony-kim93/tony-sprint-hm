@@ -5,12 +5,10 @@ import MainCard from './MainCard';
 // const RootReducer = combineReducers({
 //   MainCard
 // });
+
 const RootReducer = (state: any, action: AnyAction) => {
   switch (action.type) {
     case HYDRATE:
-      console.log('===========HYDRATE=============');
-      console.log(action.payload);
-      console.log(state);
       return action.payload;
 
     default: {
