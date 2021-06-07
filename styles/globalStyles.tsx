@@ -32,3 +32,10 @@ export const MainEngineButton = styled.button<ButtonProps>`
   border-radius: 8px;
   cursor: pointer;
 `;
+
+export const GridMainCard = styled.div`
+  display: grid;
+  grid-column-gap: 50px;
+  grid-template-columns: auto auto auto auto auto;
+  margin-top: 77px;
+`;

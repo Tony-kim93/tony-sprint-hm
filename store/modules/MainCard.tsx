@@ -76,7 +76,7 @@ export const getMainCardOrderSuccess = createAction(
 const initialState: MainCardType = {
   isLoading: false,
   mainCardData: { MainCard: { card: [] } },
-  order: 'ASC'
+  order: ''
 };
 
 const reducer = createReducer(initialState, {

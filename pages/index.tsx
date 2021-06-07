@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MainPage from '../components/templates/MainPage';
 import styled from 'styled-components';
 import * as actions from '../store/modules/RootActions';

@@ -1,15 +1,8 @@
 import { AxiosResponse } from 'axios';
-import {
-  call,
-  fork,
-  put,
-  takeLatest,
-  all,
-  takeEvery
-} from 'redux-saga/effects';
+import { call, fork, put, takeEvery } from 'redux-saga/effects';
 import * as actions from '../modules/MainCard';
 import { getMainPageCard } from './sagaAPI/sagaAPI';
-
+//네이밍--------주석처리
 function* getMainCard(action: { type: string; payload: string }) {
   const query = action.payload;
   try {
