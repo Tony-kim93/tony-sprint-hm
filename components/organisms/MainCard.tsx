@@ -46,7 +46,7 @@ export default function MainCard() {
       {MainPageDogData.card?.map((item: any) => {
         return (
           <div key={item.name}>
-            <Link href="/post/${item.id}" as={`/post/${item.id}`}>
+            <Link href="/post/${item.image.id}" as={`/post/${item.image.id}`}>
               <a>
                 <MainSingleCard
                   name={item.name}
