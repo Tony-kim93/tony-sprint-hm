@@ -21,6 +21,7 @@ export default function MainCard() {
         document.documentElement.scrollHeight - 1
       ) {
         pageSet++;
+        console.log(pageSet);
         if (pageSet < 4)
           dispatch(
             actions.getMainCard(`limit=50&page=${pageSet}&order=${order}`)
@@ -42,10 +43,10 @@ export default function MainCard() {
 
   return (
     <S.GridMainCard>
-      {MainPageDogData.card?.map((item: any, index: number) => {
+      {MainPageDogData.card?.map((item: any) => {
         return (
-          <div key={item.id}>
-            <Link href="/post/${index}" as={`/post/${index}`}>
+          <div key={item.name}>
+            <Link href="/post/${item.id}" as={`/post/${item.id}`}>
               <a>
                 <MainSingleCard
                   name={item.name}

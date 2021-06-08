@@ -1,6 +1,12 @@
-# csr vs ssr
+feedback
 
-next => universial rendering 기본지원
+# csr vs ssr => ok
 
-공부해야할거
--> ssg -> issg
+---
+
+# 중간 리팩토링(6/12~6/13)
+
+- 변수명수정
+- import 정렬
+
+# 최종 리팩토링(?)

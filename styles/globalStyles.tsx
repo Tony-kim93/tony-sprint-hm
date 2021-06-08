@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 interface ButtonProps {
   searchBtn?: any;
   filterBtn?: any;
+  comeBackBtn?: any;
 }
 
 export const MainEngineButton = styled.button<ButtonProps>`
@@ -26,6 +27,17 @@ export const MainEngineButton = styled.button<ButtonProps>`
 
       &:hover {
         background-color: #17bd59;
+      }
+    `}
+
+    ${(props) =>
+    props.comeBackBtn &&
+    css`
+      background-color: tomato;
+      color: #fff;
+
+      &:hover {
+        background-color: #b15140;
       }
     `}
   border: none;

@@ -7,7 +7,7 @@ import { createWrapper } from 'next-redux-wrapper';
 
 const makeStore: any = () => {
   const sagaMiddleware = createSagaMiddleware();
-  const middlewares = [sagaMiddleware];
+  const middlewares = [sagaMiddleware, logger];
   const store = configureStore({
     devTools: true,
     middleware: middlewares,
