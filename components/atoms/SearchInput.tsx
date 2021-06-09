@@ -11,6 +11,6 @@ const MainPageSearchInput = styled.input`
   border-radius: 4px;
 `;
 
-export default function SearchInput() {
-  return <MainPageSearchInput placeholder="search" />;
+export default function SearchInput({ handleChange }: any) {
+  return <MainPageSearchInput onChange={handleChange} placeholder="search" />;
 }

@@ -6,7 +6,6 @@ import * as actions from '../../../store/modules/RootActions';
 export default function AscButton() {
   const dispatch = useDispatch();
   const handleAsc = () => {
-    // dispatch(actions.getMainCard('limit=50&order=ASC'));
     dispatch(actions.changeOrder('ASC'));
   };
 

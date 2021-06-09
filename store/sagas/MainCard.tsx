@@ -22,9 +22,20 @@ function* getMainCardOrder(action: { type: string; payload: string }) {
   }
 }
 
+function* getSearchCard(action: { type: string; payload: string }) {
+  const query = action.payload;
+  try {
+    const response: AxiosResponse = yield call(getMainPageCard, query);
+    yield put(actions.getSearchCardSuccess(response.data));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 function* watchGetMainPageCard() {
   yield takeEvery(actions.GET_MAIN_CARD, getMainCard);
   yield takeEvery(actions.GET_MAIN_CARD_ORDER, getMainCardOrder);
+  yield takeEvery(actions.GET_SEARCH_CARD, getSearchCard);
 }
 export default function* watchSaga() {
   yield fork(watchGetMainPageCard);

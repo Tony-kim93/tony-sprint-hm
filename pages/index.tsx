@@ -23,7 +23,7 @@ const Home = () => {
 };
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps(async ({ store }) => {
-    store.dispatch(actions.getMainCard('limit=50&order=ASC'));
+    store.dispatch(actions.getMainCard('breeds?limit=50&order=ASC'));
     store.dispatch(END);
     await store.sagaTask?.toPromise();
   });

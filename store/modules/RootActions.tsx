@@ -5,5 +5,7 @@ export {
   getMainCardLoading,
   changeOrder,
   getMainCardOrder,
-  getMainCardOrderSuccess
+  getMainCardOrderSuccess,
+  getSearchCard,
+  getSearchCardSuccess
 } from './MainCard';

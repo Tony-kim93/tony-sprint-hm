@@ -2,18 +2,24 @@
 import { useRouter } from 'next/dist/client/router';
 import styled from 'styled-components';
 import * as S from '../../styles/globalStyles';
-import React from 'react';
+import React, { useState } from 'react';
 import axios from '../../libraries/axios/index';
 import Link from 'next/link';
 import MainCard from '../../components/organisms/MainCard';
 import Loading from '../../components/atoms/Loading';
+import dynamic from 'next/dynamic';
 
 const PostDetailDog = ({ item }: any) => {
-  console.log(item);
+  const [visible, setVisible] = useState<boolean>(false);
   const router = useRouter();
   if (router.isFallback) {
     return <Loading />;
   }
+  const isVisible = () => {
+    setVisible(!visible);
+  };
+  const DetailImgViewer = dynamic(() => import('react-viewer'), { ssr: false });
+  const imageSrc = [{ src: item.url }];
 
   return (
     <>
@@ -33,7 +39,14 @@ const PostDetailDog = ({ item }: any) => {
             <p>인생:{item.breeds[0].life_span}</p>
           </>
         )}
-
+        <S.MainEngineButton viewerBtn onClick={isVisible}>
+          이미지
+        </S.MainEngineButton>
+        <DetailImgViewer
+          visible={visible}
+          onClose={isVisible}
+          images={imageSrc}
+        />
         <Link href="/">
           <S.MainEngineButton comeBackBtn>돌아가기</S.MainEngineButton>
         </Link>
@@ -47,7 +60,6 @@ export async function getStaticPaths() {
   const API_URL = 'https://api.thedogapi.com/v1/breeds';
   const res = await axios.get(API_URL);
   const data = res.data;
-  console.log(data);
   return {
     paths: data.map((item: any) => ({
       params: {
@@ -63,6 +75,7 @@ export async function getStaticProps(context: any) {
   const API_URL = `https://api.thedogapi.com/v1/images/${id}`;
   const res = await axios.get(API_URL);
   const data = res.data;
+  console.log(data);
 
   return {
     props: {
@@ -85,11 +98,11 @@ const DetailDogImg = styled.img`
 
 /**
  *
- * 첫번쨰 방법 => useSelecot로 다불러와서 id값 비교
- * 첫번쨰 방법 => useSelecot로 다불러와서 id값 비교
- * 첫번쨰 방법 => useSelecot로 다불러와서 id값 비교
- * 첫번쨰 방법 => useSelecot로 다불러와서 id값 비교
- * 첫번쨰 방법 => useSelecot로 다불러와서 id값 비교
+ * 첫번쨰 방법 => useSelecor로 다불러와서 id값 비교
+ * 첫번쨰 방법 => useSelecor로 다불러와서 id값 비교
+ * 첫번쨰 방법 => useSelecor로 다불러와서 id값 비교
+ * 첫번쨰 방법 => useSelecor로 다불러와서 id값 비교
+ * 첫번쨰 방법 => useSelecor로 다불러와서 id값 비교
  */
 // import { useRouter } from 'next/dist/client/router';
 // import Link from 'next/link';

@@ -5,7 +5,6 @@ interface MainCardType {
   mainCardData: { MainCard: any };
   order: string;
 }
-
 // 초기 메인페이지 50
 export const GET_MAIN_CARD = 'card/GET_MAIN_CARD';
 export const GET_MAIN_CARD_SUCCESS = 'card/GET_MAIN_CARD_SUCCESS';
@@ -14,6 +13,8 @@ export const GET_MAIN_CARD_LOADING = 'card/GET_MAIN_CARD_LOADING';
 export const CHANGE_ORDER = 'CHANGE_ORDER';
 export const GET_MAIN_CARD_ORDER = 'GET_MAIN_CARD_ORDER';
 export const GET_MAIN_CARD_ORDER_SUCCESS = 'GET_MAIN_CARD_ORDER_SUCCESS';
+export const GET_SEARCH_CARD = 'GET_SEARCH_CARD';
+export const GET_SEARCH_CARD_SUCCESS = 'GET_SEARCH_CARD_SUCCESS';
 export const getMainCard = createAction(
   GET_MAIN_CARD,
   function prepare(query: any) {
@@ -66,7 +67,25 @@ export const getMainCardOrder = createAction(
 
 export const getMainCardOrderSuccess = createAction(
   GET_MAIN_CARD_ORDER_SUCCESS,
-  function prepare(card) {
+  function prepare(card: any) {
+    return {
+      payload: card
+    };
+  }
+);
+
+export const getSearchCard = createAction(
+  GET_SEARCH_CARD,
+  function prepare(query: any) {
+    return {
+      payload: query
+    };
+  }
+);
+
+export const getSearchCardSuccess = createAction(
+  GET_SEARCH_CARD_SUCCESS,
+  function prepare(card: any) {
     return {
       payload: card
     };
@@ -94,6 +113,9 @@ const reducer = createReducer(initialState, {
     state.order = action.payload;
   },
   [getMainCardOrderSuccess.type]: (state, action) => {
+    state.mainCardData.MainCard.card = action.payload;
+  },
+  [getSearchCardSuccess.type]: (state, action) => {
     state.mainCardData.MainCard.card = action.payload;
   }
 });

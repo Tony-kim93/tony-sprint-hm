@@ -4,6 +4,7 @@ interface ButtonProps {
   searchBtn?: any;
   filterBtn?: any;
   comeBackBtn?: any;
+  viewerBtn?: any;
 }
 
 export const MainEngineButton = styled.button<ButtonProps>`
@@ -38,6 +39,18 @@ export const MainEngineButton = styled.button<ButtonProps>`
 
       &:hover {
         background-color: #b15140;
+      }
+    `}
+
+    ${(props) =>
+    props.viewerBtn &&
+    css`
+      background-color: #19ce60;
+      color: #fff;
+      margin-right: 30px;
+
+      &:hover {
+        background-color: #17bd59;
       }
     `}
   border: none;
