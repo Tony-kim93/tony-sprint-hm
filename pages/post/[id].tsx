@@ -8,13 +8,17 @@ import Link from 'next/link';
 import MainCard from '../../components/organisms/MainCard';
 import Loading from '../../components/atoms/Loading';
 import dynamic from 'next/dynamic';
+import LikeBtn from '../../components/atoms/atomButton/LikeBtn';
+import DetailSinglePage from '../../components/molecules/DetailSinglePage';
 
 const PostDetailDog = ({ item }: any) => {
   const [visible, setVisible] = useState<boolean>(false);
   const router = useRouter();
+
   if (router.isFallback) {
     return <Loading />;
   }
+
   const isVisible = () => {
     setVisible(!visible);
   };
@@ -25,20 +29,7 @@ const PostDetailDog = ({ item }: any) => {
     <>
       <DetailDogsData>
         <h1>상세 강아지</h1>
-        {item && (
-          <>
-            <DetailDogImg
-              src={item.url}
-              alt="detail dog"
-              width={300}
-              height={300}
-            />
-            <p>품종:{item.breeds[0].breed_group}</p>
-            <p>이름:{item.breeds[0].name}</p>
-            <p>역할:{item.breeds[0].bred_for}</p>
-            <p>인생:{item.breeds[0].life_span}</p>
-          </>
-        )}
+        <DetailSinglePage item={item} />
         <S.MainEngineButton viewerBtn onClick={isVisible}>
           이미지
         </S.MainEngineButton>

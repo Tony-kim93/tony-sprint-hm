@@ -5,6 +5,7 @@ interface ButtonProps {
   filterBtn?: any;
   comeBackBtn?: any;
   viewerBtn?: any;
+  likeBtn?: any;
 }
 
 export const MainEngineButton = styled.button<ButtonProps>`
@@ -51,6 +52,19 @@ export const MainEngineButton = styled.button<ButtonProps>`
 
       &:hover {
         background-color: #17bd59;
+      }
+    `}
+
+    ${(props) =>
+    props.likeBtn &&
+    css`
+      width: 40px;
+      background-color: #00f2f2;
+      color: #fff;
+      margin-right: 30px;
+
+      &:hover {
+        background-color: #22bbbb;
       }
     `}
   border: none;

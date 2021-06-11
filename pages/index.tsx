@@ -5,6 +5,7 @@ import * as actions from '../store/modules/RootActions';
 import { wrapper } from '../store/store';
 import { GetServerSideProps } from 'next';
 import { END } from '@redux-saga/core';
+import Header from '../components/atoms/Header';
 
 const FullWrapper = styled.div`
   max-width: 850px;
@@ -15,6 +16,7 @@ const FullWrapper = styled.div`
 const Home = () => {
   return (
     <FullWrapper>
+      <Header />
       <title>TONY-Project</title>
       <h1>Dog</h1>
       <MainPage />

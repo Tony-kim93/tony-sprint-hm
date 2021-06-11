@@ -32,7 +32,7 @@ export default function MainSingleCard({ item }: any) {
             height={100}
           />
           <p>name:{item.name}</p>
-          <p>breed:{item.breed}</p>
+          <p>breed:{item.breed_group}</p>
         </>
       )}
     </div>

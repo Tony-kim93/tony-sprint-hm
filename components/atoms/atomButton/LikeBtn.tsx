@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import * as S from '../../../styles/globalStyles';
 
-export default function likeBtn() {
-  const [like, setLike] = useState<boolean>(false);
-  const handleLike = () => {
-    setLike(!like);
-  };
-
+export default function likeBtn({
+  isValue,
+  sendLikeVote,
+  sendUnLikeVote
+}: any) {
   return (
-    <>
-      {like ? (
+    <S.MainEngineButton likeBtn>
+      {isValue ? (
         <Image
-          onClick={handleLike}
+          onClick={sendUnLikeVote}
           src="/redheart.png"
           alt="test"
           width={15}
@@ -20,13 +19,13 @@ export default function likeBtn() {
         />
       ) : (
         <Image
-          onClick={handleLike}
+          onClick={sendLikeVote}
           src="/heart.png"
           alt="test2"
           width={15}
           height={15}
         />
       )}
-    </>
+    </S.MainEngineButton>
   );
 }
