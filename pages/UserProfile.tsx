@@ -13,11 +13,9 @@ export default function UserProfile() {
   const handleModal = () => {
     setIsModal(!isModal);
   };
-  console.log(isModal);
   return (
     <>
       <h1>CHECK MY PROFILE</h1>
-      <p>ip</p>
       <p>user-agent:{userAgent}</p>
       <button onClick={handleModal}>LIKE</button>
       {isModal && <LikeModal handleModal={handleModal} />}

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function MainSingleCard({ item }: any) {
   return (
-    <div>
+    <>
       {item.breeds ? (
         <>
           <img
@@ -35,6 +35,6 @@ export default function MainSingleCard({ item }: any) {
           <p>breed:{item.breed_group}</p>
         </>
       )}
-    </div>
+    </>
   );
 }
