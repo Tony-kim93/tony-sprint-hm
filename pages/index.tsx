@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import MainPage from '../components/templates/MainPage';
 import styled from 'styled-components';
-import * as actions from '../store/modules/RootActions';
+import * as actions from '../store/modules/actions';
 import { wrapper } from '../store/store';
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 import { END } from '@redux-saga/core';
-import Header from '../components/atoms/Header';
+import MainPageTemplate from '../components/templates/MainPageTemplate';
 
 const FullWrapper = styled.div`
   max-width: 850px;
@@ -16,18 +15,18 @@ const FullWrapper = styled.div`
 const Home = () => {
   return (
     <FullWrapper>
-      <Header />
       <title>TONY-Project</title>
-      <h1>Dog</h1>
-      <MainPage />
+      <MainPageTemplate />
     </FullWrapper>
   );
 };
-export const getServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps(async ({ store }) => {
-    store.dispatch(actions.getMainCard('breeds?limit=50&order=ASC'));
+
+export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
+  async ({ store }) => {
+    store.dispatch(actions.getMainCard('limit=50'));
     store.dispatch(END);
     await store.sagaTask?.toPromise();
-  });
+  }
+);
 
 export default Home;
