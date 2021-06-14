@@ -86,16 +86,9 @@ const initialState: any = {
 };
 
 const reducer = createReducer(initialState, {
-  // [getMainCardLoading.type]: (state) => {
-  //   state.isLoading = true;
-  // },
   [getMainCardSuccess.type]: (state, action) => {
     (state.isLoading = false), state.card.push(...action.payload);
   },
-  // [getMainCardFailure.type]: (state) => {
-  //   state;
-  // },
-
   [getMainCardOrderSuccess.type]: (state, action) => {
     state.card = action.payload;
   },

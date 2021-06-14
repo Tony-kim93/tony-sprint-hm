@@ -1,22 +1,20 @@
 import React from 'react';
 import Img from '../atoms/Img';
 import Paragraph from '../atoms/Paragraph';
-import Button from '../atoms/Button';
-import styled from 'styled-components';
-import Link from 'next/link';
+
+//들어오는 데이터 => 종속적인 느낌의 컴퍼넌트 네이밍 밑 아래코드들
+// 예로들면 largeCard같은거? item.breeds[0]? 이런거좀...
+//좀만 생각해보자 범용적으로 사용가능한 id같은거?
 export default function DetailCard({ item }: any) {
+  if (!item) {
+    return null;
+  }
   return (
-    <DetailCardBox>
-      {item && (
-        <>
-          <Img src={item.url} alt="test" width={350} height={350} />
-          <Paragraph text={`breed:${item.breeds[0]?.breed_group}`} />
-          <Paragraph text={`name:${item.breeds[0]?.name}`} />
-          <Paragraph text={`type:${item.url}`} />
-        </>
-      )}
-    </DetailCardBox>
+    <>
+      <Img src={item.url} alt="test" width={350} height={350} />
+      <Paragraph text={`breed:${item.breeds[0]?.breed_group}`} />
+      <Paragraph text={`name:${item.breeds[0]?.name}`} />
+      <Paragraph text={`type:${item.url}`} />
+    </>
   );
 }
-
-const DetailCardBox = styled.div``;

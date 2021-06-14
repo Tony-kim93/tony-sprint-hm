@@ -23,14 +23,19 @@ export default function SortEngeine() {
   };
 
   return (
-    <div>
+    <>
       <Input handleChange={handleChange} type="text" placeholder="aa" />
-      <Button onClick={searchById} name="search" />
-      <Button onClick={() => dispatch(actions.changeOrder('ASC'))} name="asc" />
+      <Button type="searchBtn" onClick={searchById} name="search" />
       <Button
+        type="filterBtn"
+        onClick={() => dispatch(actions.changeOrder('ASC'))}
+        name="asc"
+      />
+      <Button
+        type="filterBtn"
         onClick={() => dispatch(actions.changeOrder('DESC'))}
         name="desc"
       />
-    </div>
+    </>
   );
 }

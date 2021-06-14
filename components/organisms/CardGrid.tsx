@@ -5,25 +5,7 @@ import * as actions from '../../store/modules/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import DetailCard from '../molcules/DetailCard';
-
-export interface ItemType {
-  bred_for: string;
-  breed_group: string;
-  height: { imperial: string; metric: string };
-  id: number;
-  image: {
-    id: string;
-    width: number;
-    height: number;
-    url: string;
-  };
-  life_span: string;
-  name: string;
-  origin: string;
-  reference_image_id: string;
-  temperament: string;
-  weight: { imperial: string; metric: string };
-}
+import { ItemType } from '../../interface/index';
 
 export default function CardGrid() {
   const { value } = useSelector((state: any) => state.order);
@@ -31,6 +13,7 @@ export default function CardGrid() {
   const dispatch = useDispatch();
   let pageSet = 0;
 
+  //useEffect를 훅스로 완전히 분리하기
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -40,6 +23,7 @@ export default function CardGrid() {
         pageSet++;
         if (pageSet < 4)
           dispatch(
+            //api분리
             actions.getMainCard(`limit=50&page=${pageSet}&order=${value}`)
           );
       }
@@ -51,9 +35,14 @@ export default function CardGrid() {
   }, [value]);
 
   useEffect(() => {
+    //api분리
+
     dispatch(actions.getMainCardOrder(`limit=50&order=${value}`));
   }, [value]);
 
+  //카드리스트, cards를 map을 하고 안에  내용을 item이 아닌 card로
+  //마이그레이션
+  //응집도, 결합도
   return (
     <S.GridMainCard>
       {card.length > 1 ? (

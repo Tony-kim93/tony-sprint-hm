@@ -5,7 +5,7 @@ interface ImgProps {
   alt: string;
   width: number;
   height: number;
-  onClick?: any;
+  onClick?: React.MouseEventHandler<HTMLImageElement> | undefined;
 }
 export default function Img({ src, alt, width, height, onClick }: ImgProps) {
   return (

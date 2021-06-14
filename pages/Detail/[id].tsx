@@ -12,6 +12,7 @@ import { getVotes } from '../../store/sagas/sagaAPI/sagaAPI';
 import { useSelector } from 'react-redux';
 import Card from '../../components/molcules/Card';
 import * as S from '../../styles/globalStyles';
+import styled from 'styled-components';
 
 //type ItemType쓰면댐
 export default function DetailPage({ item }: any) {
@@ -32,6 +33,7 @@ export default function DetailPage({ item }: any) {
   );
   const isValue = getArrIncludeImgId[0]?.value === 1;
 
+  //API통신하는 부분을 전체적으로 고민(분리)
   const sendLikeVote = () => {
     axios
       .post('/votes', {
@@ -62,14 +64,19 @@ export default function DetailPage({ item }: any) {
     });
   }, [voteId]);
   return (
-    <div>
+    <DetailWrapper>
+      <h1>상세 페이지</h1>
       <DetailCard item={item} />
       <Link href="/">
         <a>
-          <Button name="돌아가기" />
+          <Button type="comeBackBtn" name="돌아가기" />
         </a>
       </Link>
-      <Button onClick={() => setIsVisible(!isVisible)} name="이미지" />
+      <Button
+        type="viewerBtn"
+        onClick={() => setIsVisible(!isVisible)}
+        name="이미지"
+      />
       <DetailImgViewer
         visible={isVisible}
         onClose={() => setIsVisible(!isVisible)}
@@ -77,6 +84,7 @@ export default function DetailPage({ item }: any) {
       />
       {isValue ? (
         <Img
+          //상수로 분리 => 좋지못한코드
           src="/assets/redheart.png"
           alt="redheart"
           onClick={sendUnLikeVote}
@@ -103,7 +111,7 @@ export default function DetailPage({ item }: any) {
           );
         })}
       </S.GridMainCard>
-    </div>
+    </DetailWrapper>
   );
 }
 
@@ -113,3 +121,8 @@ export async function getServerSideProps(context: any) {
   const item = await res.json();
   return { props: { item } };
 }
+
+const DetailWrapper = styled.div`
+  max-width: 850px;
+  margin: 0 auto;
+`;

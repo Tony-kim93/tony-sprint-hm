@@ -2,7 +2,7 @@ import React from 'react';
 import Img from '../atoms/Img';
 import Paragraph from '../atoms/Paragraph';
 import styled from 'styled-components';
-import { ItemType } from '../organisms/CardGrid';
+import { ItemType } from '../../interface/index';
 
 interface CardProps {
   item: ItemType;
@@ -12,6 +12,7 @@ export default function Card({ item }: CardProps) {
   return (
     <CardBox>
       <Img src={item.image.url} alt="test" width={100} height={100} />
+      <Img src="/star.png" alt="star" width={15} height={15} />
       <Paragraph text={`breed:${item.breed_group}`} />
       <Paragraph text={`name:${item.name}`} />
     </CardBox>
