@@ -5,14 +5,21 @@ interface InputProps {
   type: string;
   placeholder: string;
   handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  accept?: string;
 }
 
-export default function Input({ type, placeholder, handleChange }: InputProps) {
+export default function Input({
+  type,
+  placeholder,
+  handleChange,
+  accept
+}: InputProps) {
   return (
     <MainPageSearchInput
       onChange={handleChange}
       type={type}
-      placeholder={placeholder}></MainPageSearchInput>
+      placeholder={placeholder}
+      accept={accept}></MainPageSearchInput>
   );
 }
 

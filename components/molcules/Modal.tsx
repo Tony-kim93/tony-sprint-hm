@@ -24,7 +24,6 @@ export default function Modal({ handleModal, like }: any) {
   };
   useEffect(() => {
     getLikeData(findDataId).then((data) => {
-      console.log('rendering');
       setDatas(data);
     });
   }, []);

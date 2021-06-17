@@ -4,7 +4,7 @@ import * as S from '../../styles/globalStyles';
 interface ButtonProps {
   name: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
-  type: string;
+  type?: string;
 }
 
 export default function Button({ name, onClick, type }: ButtonProps) {

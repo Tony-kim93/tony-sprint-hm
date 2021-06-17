@@ -11,7 +11,12 @@ export default function Header() {
           <Heading text="Profile" />
         </a>
       </Link>
-      <h1>dog</h1>
+      <Heading text="Dog" />
+      <Link href="/Register">
+        <a>
+          <Heading text="Register" />
+        </a>
+      </Link>
     </HeaderWrapper>
   );
 }

@@ -72,6 +72,7 @@ export default function DetailPage({ item }: any) {
           <Button type="comeBackBtn" name="돌아가기" />
         </a>
       </Link>
+      {/* <Button name="gg" onClick={() => router.back()} /> */}
       <Button
         type="viewerBtn"
         onClick={() => setIsVisible(!isVisible)}
@@ -116,6 +117,9 @@ export default function DetailPage({ item }: any) {
 }
 
 export async function getServerSideProps(context: any) {
+  const test2 = Math.floor(Math.random() * 10);
+  console.log(test2);
+  console.log('ssp');
   const { id } = context.query;
   const res = await fetch(`https://api.thedogapi.com/v1/images/${id}`);
   const item = await res.json();
