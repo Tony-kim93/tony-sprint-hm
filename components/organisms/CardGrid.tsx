@@ -5,7 +5,7 @@ import * as actions from '../../store/modules/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import DetailCard from '../molcules/DetailCard';
-import { ItemType } from '../../interface/index';
+import * as TYPE from '../../interface/index';
 
 export default function CardGrid() {
   const { value } = useSelector((state: any) => state.order);
@@ -46,7 +46,7 @@ export default function CardGrid() {
   return (
     <S.GridMainCard>
       {card.length > 1 ? (
-        card.map((item: ItemType) => (
+        card.map((item: TYPE.ItemType) => (
           <Link key={item.id} href={`/Detail/${item.image.id}`}>
             <a>
               <Card item={item} />

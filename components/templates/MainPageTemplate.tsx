@@ -5,10 +5,10 @@ import Header from '../organisms/Header';
 
 export default function MainPageTemplate() {
   return (
-    <div>
+    <>
       <Header />
       <SortEngeine />
       <CardGrid />
-    </div>
+    </>
   );
 }

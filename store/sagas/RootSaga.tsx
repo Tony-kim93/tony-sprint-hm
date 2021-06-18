@@ -1,6 +1,6 @@
 import { all, fork } from 'redux-saga/effects';
-import MainCard from './MainCard';
+import mainSaga from './mainSaga';
 
-export default function* RootSaga() {
-  yield all([fork(MainCard)]);
+export default function* rootSaga() {
+  yield all([fork(mainSaga)]);
 }

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 interface InputProps {
   type: string;
-  placeholder: string;
+  placeholder?: string;
   handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
   accept?: string;
 }

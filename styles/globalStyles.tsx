@@ -14,6 +14,19 @@ interface ImgProps {
   type?: any;
 }
 
+export const ImgStyle = styled.img<ImgProps>`
+  ${(props) =>
+    props.type === 'previewImg' &&
+    css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 500px;
+      height: 500px;
+      border: 1px solid black;
+    `}
+`;
+
 export const MainEngineButton = styled.button<ButtonProps>`
   width: 100px;
   height: 40px;
@@ -93,23 +106,28 @@ export const MainEngineButton = styled.button<ButtonProps>`
   cursor: pointer;
 `;
 
-// export const MainImg = styled.img<ImgProps>`
-//   ${(props) =>
-//     props.type === 'enjoyImg' &&
-//     css`
-//       display: none;
-//     `}
-//   ${(props) =>
-//     props.type === 'gridImg' &&
-//     css`
-//       &:hover {
-//         .test3 {
-//           display: fixed;
-//           z-index: 99999;
-//         }
-//       }
-//     `}
-// `;
+export const ModalContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #00000080;
+  z-index: 100000;
+
+  .modalContent {
+    background-color: #fff;
+    position: absolute;
+    width: 900px;
+    margin: 0 auto;
+    height: 900px;
+    border-radius: 10px;
+    text-align: center;
+  }
+`;
 
 export const CardWrapper = styled.div`
   position: relative;

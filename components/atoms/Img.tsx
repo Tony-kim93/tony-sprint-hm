@@ -4,10 +4,11 @@ import * as S from '../../styles/globalStyles';
 interface ImgProps {
   src: string;
   alt: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   onClick?: React.MouseEventHandler<HTMLImageElement> | undefined;
   className?: string;
+  type?: string;
 }
 export default function Img({
   src,
@@ -15,10 +16,12 @@ export default function Img({
   width,
   height,
   onClick,
-  className
+  className,
+  type
 }: ImgProps) {
   return (
-    <img
+    <S.ImgStyle
+      type={type}
       className={className}
       src={src}
       alt={alt}

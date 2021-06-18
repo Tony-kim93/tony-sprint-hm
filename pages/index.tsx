@@ -23,9 +23,6 @@ const Home = () => {
 
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
   async ({ store }) => {
-    const test = Math.floor(Math.random() * 10);
-    console.log(test);
-    console.log('gsp');
     store.dispatch(actions.getMainCard('limit=50'));
     store.dispatch(END);
     await store.sagaTask?.toPromise();

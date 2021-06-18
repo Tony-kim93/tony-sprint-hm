@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Heading from '../atoms/Heading';
 import Button from '../atoms/Button';
-import { useSelector } from 'react-redux';
 import LikeCard from '../molcules/LikeCard';
 import * as S from '../../styles/globalStyles';
-import axios from '../../libraries/axios/index';
+import * as API from '../../api/index';
+import * as TYPE from '../../interface/index';
 
-export default function Modal({ handleModal, like }: any) {
+interface likeDataProps {
+  like: [TYPE.likeProps];
+  handleModal: any;
+}
+
+//이거 따로 어떻게주지? 타입? ㅋㅋ
+export default function Modal({ handleModal, like }: likeDataProps) {
+  console.log(typeof handleModal);
   const [datas, setDatas] = useState<any>([]);
-
   const findDataId = like.map((item: any) => {
     return item.image_id;
   });
@@ -17,7 +22,7 @@ export default function Modal({ handleModal, like }: any) {
   const getLikeData = (idArr: any) => {
     const result = Promise.all(
       idArr.map((id: any) => {
-        return axios.get(`/images/${id}`).then((res) => res.data);
+        return API.getLikedImg(`${id}`).then((res) => res.data);
       })
     );
     return result;
@@ -29,7 +34,7 @@ export default function Modal({ handleModal, like }: any) {
   }, []);
 
   return (
-    <ModalContainer>
+    <S.ModalContainer>
       <div className="modalContent">
         <Heading text="좋아요" />
         <S.GridLikeCard>
@@ -42,29 +47,6 @@ export default function Modal({ handleModal, like }: any) {
         </S.GridLikeCard>
         <Button name="EXIT" onClick={handleModal} type="exitBtn" />
       </div>
-    </ModalContainer>
+    </S.ModalContainer>
   );
 }
-
-export const ModalContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #00000080;
-  z-index: 100000;
-
-  .modalContent {
-    background-color: #fff;
-    position: absolute;
-    width: 900px;
-    margin: 0 auto;
-    height: 900px;
-    border-radius: 10px;
-    text-align: center;
-  }
-`;

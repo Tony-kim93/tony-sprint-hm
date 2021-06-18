@@ -1,8 +1,14 @@
 import React from 'react';
 import Img from '../atoms/Img';
 import * as S from '../../styles/globalStyles';
+import * as TYPE from '../../interface/index';
 
-export default function EnjoyCard({ enjoy }: any) {
+interface enjoyProps {
+  enjoy: [TYPE.enjoyItem];
+}
+
+export default function EnjoyCard({ enjoy }: enjoyProps) {
+  console.log(enjoy);
   return (
     <S.GridLikeCard>
       {enjoy &&
