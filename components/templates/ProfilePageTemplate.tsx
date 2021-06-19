@@ -3,8 +3,7 @@ import Button from '../atoms/Button';
 import * as S from '../../styles/globalStyles';
 import * as API from '../../api/index';
 import Modal from '../molcules/Modal';
-import EnjoyCard from '../molcules/EnjoyCard';
-import RegistCard from '../molcules/RegistCard';
+import Img from '../atoms/Img';
 
 export default function ProfilePageTemplate() {
   const [isModal, setIsModal] = useState<boolean>(false);
@@ -13,13 +12,29 @@ export default function ProfilePageTemplate() {
   const [like, setLike] = useState<any>([]);
   const [enjoy, setEnjoy] = useState<any>([]);
   const [regist, setRegist] = useState<any>([]);
+  const [datas, setDatas] = useState<any>([]);
+  const findDataId = like.map((item: any) => {
+    return item.image_id;
+  });
+
+  const getLikeData = (idArr: any) => {
+    const result = Promise.all(
+      idArr.map((id: any) => {
+        return API.getLikedImg(`${id}`).then((res) => res.data);
+      })
+    );
+    return result;
+  };
+  useEffect(() => {
+    getLikeData(findDataId).then((data) => setDatas(data));
+  }, [like]);
   const query = {
     limit: 10,
     sub_id: '1234'
   };
 
   useEffect(() => {
-    API.getVotes('TonyK').then((result) => {
+    API.getVotes('eric').then((result) => {
       if (result.status === 200) {
         setLike(result.data);
       }
@@ -27,7 +42,7 @@ export default function ProfilePageTemplate() {
   }, []);
 
   useEffect(() => {
-    API.getFavourites('test4').then((result) => {
+    API.getFavourites('test14').then((result) => {
       if (result.status === 200) {
         setEnjoy(result.data);
       }
@@ -53,15 +68,37 @@ export default function ProfilePageTemplate() {
   const handleRegist = () => {
     setIsRegist(!isRegist);
   };
-
   return (
     <S.ProfileWrapper>
       <Button name="like" type="likeBtn" onClick={handleModal} />
       <Button name="enjoy" type="likeBtn" onClick={handleEnjoy} />
       <Button name="regist" type="likeBtn" onClick={handleRegist} />
-      {isModal && <Modal like={like} handleModal={handleModal} />}
-      {isVisible && <EnjoyCard enjoy={enjoy} />}
-      {isRegist && <RegistCard regist={regist} handleModal={handleRegist} />}
+      {isModal && (
+        <Modal
+          type="like"
+          datas={datas}
+          title="like"
+          handleModal={handleModal}
+        />
+      )}
+      {isRegist && (
+        <Modal
+          type="regist"
+          title="regist"
+          datas={regist}
+          handleModal={handleRegist}
+        />
+      )}
+      {isVisible && (
+        <S.GridLikeCard>
+          {enjoy &&
+            enjoy.map((item: any) => (
+              <div key={item.id}>
+                <Img src={item.image.url} alt="test" width={100} height={100} />
+              </div>
+            ))}
+        </S.GridLikeCard>
+      )}
     </S.ProfileWrapper>
   );
 }

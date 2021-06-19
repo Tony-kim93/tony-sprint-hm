@@ -6,6 +6,7 @@ interface ButtonProps {
   onClick?: any;
   // onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   type?: string;
+  style?: any;
 }
 
 export default function Button({ name, onClick, type }: ButtonProps) {

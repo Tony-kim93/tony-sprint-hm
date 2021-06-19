@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import DetailCard from '../../components/molcules/DetailCard';
 import Button from '../../components/atoms/Button';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -14,9 +13,8 @@ import Toggle from '../../components/molcules/Toggle';
 
 //type ItemType쓰면댐
 export default function DetailPage({ item }: any) {
+  const [likeArr, setLikeArr] = useState<any>([]);
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [likeDogData, setLikeDogData] = useState<any>([]);
-  const [voteId, setVoteId] = useState<number>(0);
   const { card } = useSelector((state: any) => state.mainPage);
   const DetailImgViewer = dynamic(() => import('react-viewer'), { ssr: false });
   const imageSrc = [{ src: item.url }];
@@ -24,43 +22,36 @@ export default function DetailPage({ item }: any) {
   if (router.isFallback) {
     return <Error />;
   }
-  const getDetailPageImgId = item.breeds[0].reference_image_id;
-  const getArrIncludeImgId = likeDogData?.filter(
-    (el: any) => el.image_id === getDetailPageImgId
-  );
-  const isValue = getArrIncludeImgId[0]?.value === 1;
-
-  const sendLikeVote = () => {
-    API.sendLikeVotes({
+  const sendLikeVote = async () => {
+    const result = await API.sendLikeVotes({
       image_id: item.breeds[0].reference_image_id,
-      sub_id: 'TonyK',
+      sub_id: 'eric',
       value: 1
-    }).then((result) => {
-      if (result.status === 200) {
-        setVoteId(result.data.id);
-      }
     });
+    if (result.status === 200) return result.data.id;
   };
-  const sendUnLikeVote = () => {
-    API.deleteVotes(`${voteId}`).then((result) => {
-      if (result.status === 200) {
-        setVoteId(result.data.id);
-      }
-    });
+  const sendUnLikeVote = (voteId: any) => {
+    API.deleteVotes(`${voteId}`);
   };
 
+  // //image id값 받아오기
   useEffect(() => {
-    API.getVotes('TonyK').then((result) => {
+    API.getVotes('eric').then((result) => {
       if (result.status === 200) {
-        setLikeDogData(result.data);
-        setVoteId(getArrIncludeImgId[0]?.id);
+        setLikeArr(result.data.filter((el: any) => el.image_id === item.id));
       }
     });
-  }, [voteId]);
+  }, []);
   return (
     <DetailWrapper>
       <h1>상세 페이지</h1>
-      <DetailCard item={item} />
+      <Card
+        url={item.url}
+        breedGroup={item.breeds[0].breed_group}
+        name={item.breeds[0].name}
+        width={350}
+        height={350}
+      />
       <Link href="/">
         <a>
           <Button type="comeBackBtn" name="돌아가기" />
@@ -77,18 +68,25 @@ export default function DetailPage({ item }: any) {
         images={imageSrc}
       />
       <Toggle
-        toggle={isValue}
-        src1={'/assets/redheart.png'}
-        src2={'/assets/heart.png'}
+        src1="/assets/redheart.png"
+        src2="/assets/heart.png"
         sendEnroll={sendLikeVote}
         sendCancel={sendUnLikeVote}
+        id={item.breeds[0].reference_image_id}
+        likeArr={likeArr}
       />
       <S.GridMainCard>
         {card?.map((item: any) => {
           return (
             <Link key={item.id} href={`/Detail/${item.image.id}`}>
               <a>
-                <Card item={item} />
+                <Card
+                  url={item.image.url}
+                  breedGroup={item.breed_group}
+                  name={item.name}
+                  width={100}
+                  height={100}
+                />
               </a>
             </Link>
           );
@@ -99,9 +97,6 @@ export default function DetailPage({ item }: any) {
 }
 
 export async function getServerSideProps(context: any) {
-  const test2 = Math.floor(Math.random() * 10);
-  console.log(test2);
-  console.log('ssp');
   const { id } = context.query;
   const res = await fetch(`https://api.thedogapi.com/v1/images/${id}`);
   const item = await res.json();

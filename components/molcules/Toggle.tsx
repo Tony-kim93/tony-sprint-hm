@@ -1,43 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Img from '../atoms/Img';
 
 interface ToggleDataProps {
   src1: string;
   src2: string;
-  toggle: boolean;
-  sendEnroll: React.MouseEventHandler<HTMLImageElement> | undefined;
-  sendCancel: React.MouseEventHandler<HTMLImageElement> | undefined;
+  toggle?: boolean;
+  sendEnroll?: any;
+  sendCancel?: any;
+  id?: any;
+  likeArr?: any;
 }
 
 export default function Toggle({
   src1,
   src2,
-  toggle,
   sendEnroll,
-  sendCancel
+  sendCancel,
+  id,
+  likeArr
 }: ToggleDataProps) {
-  console.log();
+  const [toggle, setToggle] = useState<boolean>(false);
+  const [deleteId, setDeleteId] = useState<any>(undefined);
+  useEffect(() => {
+    if (id) {
+      if (toggle) {
+        sendEnroll(id).then((res: any) => setDeleteId(res));
+        return;
+      }
+      if (deleteId) sendCancel(deleteId);
+    }
+  }, [id, toggle]);
+
+  useEffect(() => {
+    if (likeArr?.length > 0) setToggle(true);
+  }, [likeArr]);
+
+  const onClick = (e: any) => {
+    e.preventDefault();
+    setToggle(!toggle);
+  };
   return (
     <>
-      {toggle ? (
-        <Img
-          className="hoverImg"
-          onClick={sendCancel}
-          src={src1}
-          alt="test"
-          width={15}
-          height={15}
-        />
-      ) : (
-        <Img
-          className="hoverImg"
-          onClick={sendEnroll}
-          src={src2}
-          alt="test"
-          width={15}
-          height={15}
-        />
-      )}
+      <Img
+        className="hoverImg"
+        onClick={onClick}
+        src={toggle ? src1 : src2}
+        alt="test"
+        width={15}
+        height={15}
+      />
     </>
   );
 }

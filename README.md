@@ -18,3 +18,7 @@ feedback
 - 인피니트 스크롤 커스텀훅스로
 
 # 최종 리팩토링(?)
+
+<Img src={item.url} alt="test" width={350} height={350} />
+      <Paragraph text={`breed:${item.breeds[0]?.breed_group}`} />
+      <Paragraph text={`name:${item.breeds[0]?.name}`} />

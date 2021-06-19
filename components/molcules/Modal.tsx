@@ -1,49 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Heading from '../atoms/Heading';
 import Button from '../atoms/Button';
-import LikeCard from '../molcules/LikeCard';
+import Card from '../molcules/Card';
 import * as S from '../../styles/globalStyles';
-import * as API from '../../api/index';
-import * as TYPE from '../../interface/index';
 
 interface likeDataProps {
-  like: [TYPE.likeProps];
   handleModal: any;
+  title: string;
+  datas: any;
+  type: string;
 }
 
-//이거 따로 어떻게주지? 타입? ㅋㅋ
-export default function Modal({ handleModal, like }: likeDataProps) {
-  console.log(typeof handleModal);
-  const [datas, setDatas] = useState<any>([]);
-  const findDataId = like.map((item: any) => {
-    return item.image_id;
-  });
-
-  const getLikeData = (idArr: any) => {
-    const result = Promise.all(
-      idArr.map((id: any) => {
-        return API.getLikedImg(`${id}`).then((res) => res.data);
-      })
-    );
-    return result;
-  };
-  useEffect(() => {
-    getLikeData(findDataId).then((data) => {
-      setDatas(data);
-    });
-  }, []);
-
+export default function Modal({
+  datas,
+  handleModal,
+  title,
+  type
+}: likeDataProps) {
   return (
     <S.ModalContainer>
       <div className="modalContent">
-        <Heading text="좋아요" />
+        <Heading text={title} />
         <S.GridLikeCard>
-          {datas &&
-            datas.map((data: any) => (
-              <div key={data.id}>
-                <LikeCard data={data} />
-              </div>
-            ))}
+          {datas?.map((data: any) => (
+            <div key={data.id}>
+              <Card
+                url={data.url}
+                breedGroup={data.breeds[0]?.breed_group}
+                name={data.breeds[0]?.name}
+                width={100}
+                height={100}
+              />
+              {type === 'regist' && <Button name="delete" />}
+            </div>
+          ))}
         </S.GridLikeCard>
         <Button name="EXIT" onClick={handleModal} type="exitBtn" />
       </div>

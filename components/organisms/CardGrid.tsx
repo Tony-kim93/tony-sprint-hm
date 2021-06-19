@@ -1,60 +1,64 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Card from '../molcules/Card';
 import * as S from '../../styles/globalStyles';
-import * as actions from '../../store/modules/actions';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Link from 'next/link';
-import DetailCard from '../molcules/DetailCard';
-import * as TYPE from '../../interface/index';
+import Toggle from '../molcules/Toggle';
 
-export default function CardGrid() {
+interface CardGridProps {
+  sendEnjoy: any;
+  sendCancelEnjoy: any;
+  useInfinity?: any;
+}
+
+export default function CardGrid({
+  sendEnjoy,
+  sendCancelEnjoy,
+  useInfinity
+}: CardGridProps) {
   const { value } = useSelector((state: any) => state.order);
   const { card } = useSelector((state: any) => state.mainPage);
-  const dispatch = useDispatch();
-  let pageSet = 0;
+  //useInfinite 인자로 전달받을떄만 실행가능
+  if (useInfinity) {
+    let pageSet = 0;
+    useInfinity(pageSet, value);
+  }
 
-  //useEffect를 훅스로 완전히 분리하기
-  useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.scrollY + document.documentElement.clientHeight >
-        document.documentElement.scrollHeight - 1
-      ) {
-        pageSet++;
-        if (pageSet < 4)
-          dispatch(
-            //api분리
-            actions.getMainCard(`limit=50&page=${pageSet}&order=${value}`)
-          );
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [value]);
-
-  useEffect(() => {
-    //api분리
-
-    dispatch(actions.getMainCardOrder(`limit=50&order=${value}`));
-  }, [value]);
-
-  //카드리스트, cards를 map을 하고 안에  내용을 item이 아닌 card로
-  //마이그레이션
-  //응집도, 결합도
   return (
     <S.GridMainCard>
       {card.length > 1 ? (
-        card.map((item: TYPE.ItemType) => (
-          <Link key={item.id} href={`/Detail/${item.image.id}`}>
-            <a>
-              <Card item={item} />
-            </a>
-          </Link>
-        ))
+        card.map((item: any) => {
+          return (
+            <S.CardWrapper key={item.id}>
+              <Link href={`/Detail/${item.image.id}`}>
+                <a>
+                  <Card
+                    url={item.image.url}
+                    breedGroup={item.breed_group}
+                    name={item.name}
+                    width={100}
+                    height={100}
+                  />
+                  <Toggle
+                    src1={'/yellowstar.png'}
+                    src2={'/star.png'}
+                    sendCancel={sendCancelEnjoy}
+                    sendEnroll={sendEnjoy}
+                    id={item.image.id}
+                  />
+                </a>
+              </Link>
+            </S.CardWrapper>
+          );
+        })
       ) : (
-        <DetailCard item={card[0]} />
+        <Card
+          url={card[0]?.url}
+          breedGroup={card[0]?.breeds[0].breed_group}
+          name={card[0]?.breeds[0].name}
+          width={350}
+          height={350}
+        />
       )}
     </S.GridMainCard>
   );

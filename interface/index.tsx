@@ -41,7 +41,7 @@ interface eachBreedProps {
 }
 
 export interface likeItem {
-  breeds: [eachBreedProps];
+  breeds: eachBreedProps[];
   height: number;
   id: string;
   url: string;
@@ -51,7 +51,7 @@ export interface likeItem {
 //modal props item
 export interface likeProps {
   created_at: string;
-  id: 9738;
+  id: number;
   image: { id: string; url: string };
   image_id: string;
   sub_id: string;
