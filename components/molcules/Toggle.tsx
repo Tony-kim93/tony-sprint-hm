@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Img from '../atoms/Img';
+import * as TYPE from '../../interface/index';
 
 interface ToggleDataProps {
   src1: string;
@@ -7,8 +8,8 @@ interface ToggleDataProps {
   toggle?: boolean;
   sendEnroll?: any;
   sendCancel?: any;
-  id?: any;
-  likeArr?: any;
+  id?: string;
+  likeArr?: TYPE.likeArrProps;
 }
 
 export default function Toggle({

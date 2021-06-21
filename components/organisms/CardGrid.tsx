@@ -9,15 +9,17 @@ interface CardGridProps {
   sendEnjoy: any;
   sendCancelEnjoy: any;
   useInfinity?: any;
+  card: any;
+  value: any;
 }
 
 export default function CardGrid({
   sendEnjoy,
   sendCancelEnjoy,
-  useInfinity
+  useInfinity,
+  card,
+  value
 }: CardGridProps) {
-  const { value } = useSelector((state: any) => state.order);
-  const { card } = useSelector((state: any) => state.mainPage);
   //useInfinite 인자로 전달받을떄만 실행가능
   if (useInfinity) {
     let pageSet = 0;

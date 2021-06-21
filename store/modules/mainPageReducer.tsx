@@ -13,12 +13,6 @@ export const GET_SEARCH_CARD_SUCCESS = 'GET_SEARCH_CARD_SUCCESS';
 
 export const getMainCard = createAction(
   GET_MAIN_CARD,
-  //   function prepare(query: any) {
-  //     return {
-  //       payload: query
-  //     };
-  //   }
-  // );
   function prepare(limit, pageSet, value: any) {
     return {
       payload: {

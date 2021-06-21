@@ -4,9 +4,6 @@ export const IP = 'https://api.ipify.org?format=json';
 
 //saga API
 export function getMainPageCard(props: any) {
-  console.log(props.limit);
-  console.log(props.pageSet);
-  console.log(props.value);
   return axios.get(
     `/breeds?limit=${props.limit}&page=${props.pageSet}&order=${props.value}`
   );
@@ -54,3 +51,6 @@ export function getLikedAllImg(query: any) {
 export function deleteUploadImg(query: any) {
   return axios.delete(`/images/${query}`);
 }
+
+//gsr
+export const GSR = 'https://api.thedogapi.com/v1/images/';

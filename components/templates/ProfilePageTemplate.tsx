@@ -4,17 +4,17 @@ import * as S from '../../styles/globalStyles';
 import * as API from '../../api/index';
 import Modal from '../molcules/Modal';
 import Img from '../atoms/Img';
-import { resourceLimits } from 'worker_threads';
+import * as TYPE from '../../interface/index';
 
 export default function ProfilePageTemplate() {
   const [isModal, setIsModal] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [isRegist, setIsRegist] = useState<boolean>(false);
-  const [like, setLike] = useState<any>([]);
-  const [enjoy, setEnjoy] = useState<any>([]);
-  const [regist, setRegist] = useState<any>([]);
-  const [datas, setDatas] = useState<any>([]);
-  const findDataId = like.map((item: any) => {
+  const [like, setLike] = useState<TYPE.likeArrProps[]>([]);
+  const [enjoy, setEnjoy] = useState<TYPE.enjoyProps[]>([]);
+  const [regist, setRegist] = useState<TYPE.registProps[]>([]);
+  const [datas, setDatas] = useState<TYPE.likeProps[]>([]);
+  const findDataId = like.map((item: TYPE.likeArrProps) => {
     return item.image_id;
   });
   const query = {
@@ -22,7 +22,7 @@ export default function ProfilePageTemplate() {
     sub_id: '1234'
   };
 
-  const getLikeData = (idArr: any) => {
+  const getLikeData = (idArr: string[]) => {
     const result = Promise.all(
       idArr.map((id: any) => {
         return API.getLikedImg(`${id}`).then((res) => res.data);
@@ -62,7 +62,7 @@ export default function ProfilePageTemplate() {
   }, []);
 
   //내가 등록한거 삭제기능
-  const deleteUploadImg = (imgId: any) => {
+  const deleteUploadImg = (imgId: string) => {
     API.deleteUploadImg(imgId).then((result) => {
       if (result.status === 204) {
         API.getLikedAllImg(`limit=${query.limit}&sub_id=${query.sub_id}`).then(

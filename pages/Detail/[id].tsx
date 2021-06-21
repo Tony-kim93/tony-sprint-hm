@@ -8,11 +8,14 @@ import * as API from '../../api/index';
 import { useSelector } from 'react-redux';
 import Card from '../../components/molcules/Card';
 import * as S from '../../styles/globalStyles';
+import * as TYPE from '../../interface/index';
 import styled from 'styled-components';
 import Toggle from '../../components/molcules/Toggle';
 
-//type ItemType쓰면댐
-export default function DetailPage({ item }: any) {
+interface itemProps {
+  item: TYPE.likeArrProps;
+}
+export default function DetailPage({ item }: itemProps) {
   const [likeArr, setLikeArr] = useState<any>([]);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const { card } = useSelector((state: any) => state.mainPage);
@@ -22,6 +25,7 @@ export default function DetailPage({ item }: any) {
   if (router.isFallback) {
     return <Error />;
   }
+
   const sendLikeVote = async () => {
     const result = await API.sendLikeVotes({
       image_id: item.breeds[0].reference_image_id,
@@ -30,7 +34,7 @@ export default function DetailPage({ item }: any) {
     });
     if (result.status === 200) return result.data.id;
   };
-  const sendUnLikeVote = (voteId: any) => {
+  const sendUnLikeVote = (voteId: string) => {
     API.deleteVotes(`${voteId}`);
   };
 
@@ -75,6 +79,7 @@ export default function DetailPage({ item }: any) {
         id={item.breeds[0].reference_image_id}
         likeArr={likeArr}
       />
+
       <S.GridMainCard>
         {card?.map((item: any) => {
           return (
@@ -98,7 +103,7 @@ export default function DetailPage({ item }: any) {
 
 export async function getServerSideProps(context: any) {
   const { id } = context.query;
-  const res = await fetch(`https://api.thedogapi.com/v1/images/${id}`);
+  const res = await fetch(`${API.GSR}${id}`);
   const item = await res.json();
   return { props: { item } };
 }

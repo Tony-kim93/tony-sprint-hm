@@ -3,11 +3,12 @@ import Heading from '../atoms/Heading';
 import Button from '../atoms/Button';
 import Card from '../molcules/Card';
 import * as S from '../../styles/globalStyles';
+import * as TYPE from '../../interface/index';
 
 interface likeDataProps {
-  handleModal: any;
+  handleModal: () => void;
   title: string;
-  datas: any;
+  datas: TYPE.registProps[] | TYPE.likeProps[];
   type: string;
   deleteUploadImg?: any;
 }
@@ -19,6 +20,7 @@ export default function Modal({
   type,
   deleteUploadImg
 }: likeDataProps) {
+  console.log('datas', datas);
   return (
     <S.ModalContainer>
       <div className="modalContent">
