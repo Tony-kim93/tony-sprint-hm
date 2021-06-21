@@ -3,12 +3,16 @@ import axios from '../libraries/axios/index';
 export const IP = 'https://api.ipify.org?format=json';
 
 //saga API
-export function getMainPageCard(query: any) {
-  return axios.get(`/breeds?${query}`);
+export function getMainPageCard(props: any) {
+  console.log(props.limit);
+  console.log(props.pageSet);
+  console.log(props.value);
+  return axios.get(
+    `/breeds?limit=${props.limit}&page=${props.pageSet}&order=${props.value}`
+  );
 }
 
 export function getMainSearchCard(query: any) {
-  console.log(query);
   return axios.get(`/images/search?${query}`);
 }
 
@@ -45,4 +49,8 @@ export function getLikedImg(query: string) {
 
 export function getLikedAllImg(query: any) {
   return axios.get(`/images?${query}`);
+}
+
+export function deleteUploadImg(query: any) {
+  return axios.delete(`/images/${query}`);
 }

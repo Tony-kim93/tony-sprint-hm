@@ -23,7 +23,7 @@ const Home = () => {
 
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
   async ({ store }) => {
-    store.dispatch(actions.getMainCard('limit=50'));
+    store.dispatch(actions.getMainCard(50, 0, 'ASC'));
     store.dispatch(END);
     await store.sagaTask?.toPromise();
   }

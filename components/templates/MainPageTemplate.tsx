@@ -12,7 +12,7 @@ export default function MainPageTemplate() {
   };
 
   const sendCancelEnjoy = (enjoyId: any) => {
-    API.deleteFavourites(enjoyId).then((res) => console.log(res));
+    API.deleteFavourites(enjoyId);
   };
 
   return (

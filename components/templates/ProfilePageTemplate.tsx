@@ -4,6 +4,7 @@ import * as S from '../../styles/globalStyles';
 import * as API from '../../api/index';
 import Modal from '../molcules/Modal';
 import Img from '../atoms/Img';
+import { resourceLimits } from 'worker_threads';
 
 export default function ProfilePageTemplate() {
   const [isModal, setIsModal] = useState<boolean>(false);
@@ -16,6 +17,10 @@ export default function ProfilePageTemplate() {
   const findDataId = like.map((item: any) => {
     return item.image_id;
   });
+  const query = {
+    limit: 10,
+    sub_id: '1234'
+  };
 
   const getLikeData = (idArr: any) => {
     const result = Promise.all(
@@ -28,10 +33,6 @@ export default function ProfilePageTemplate() {
   useEffect(() => {
     getLikeData(findDataId).then((data) => setDatas(data));
   }, [like]);
-  const query = {
-    limit: 10,
-    sub_id: '1234'
-  };
 
   useEffect(() => {
     API.getVotes('eric').then((result) => {
@@ -49,6 +50,7 @@ export default function ProfilePageTemplate() {
     });
   }, []);
 
+  //등록 받아오기
   useEffect(() => {
     API.getLikedAllImg(`limit=${query.limit}&sub_id=${query.sub_id}`).then(
       (result) => {
@@ -58,6 +60,17 @@ export default function ProfilePageTemplate() {
       }
     );
   }, []);
+
+  //내가 등록한거 삭제기능
+  const deleteUploadImg = (imgId: any) => {
+    API.deleteUploadImg(imgId).then((result) => {
+      if (result.status === 204) {
+        API.getLikedAllImg(`limit=${query.limit}&sub_id=${query.sub_id}`).then(
+          (result) => setRegist(result.data)
+        );
+      }
+    });
+  };
 
   const handleModal = () => {
     setIsModal(!isModal);
@@ -87,6 +100,7 @@ export default function ProfilePageTemplate() {
           title="regist"
           datas={regist}
           handleModal={handleRegist}
+          deleteUploadImg={deleteUploadImg}
         />
       )}
       {isVisible && (

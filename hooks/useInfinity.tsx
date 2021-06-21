@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import * as actions from '../store/modules/actions';
 import { useDispatch } from 'react-redux';
 
@@ -13,7 +13,8 @@ export const useInfinity = (pageSet: number, value: string) => {
         pageSet++;
         if (pageSet < 4)
           dispatch(
-            actions.getMainCard(`limit=50&page=${pageSet}&order=${value}`)
+            // actions.getMainCard(`limit=50&page=${pageSet}&order=${value}`)
+            actions.getMainCard(50, pageSet, value)
           );
       }
     };
@@ -24,6 +25,6 @@ export const useInfinity = (pageSet: number, value: string) => {
   }, [value]);
 
   useEffect(() => {
-    dispatch(actions.getMainCardOrder(`limit=50&order=${value}`));
+    dispatch(actions.getMainCardOrder(50, pageSet, value));
   }, [value]);
 };

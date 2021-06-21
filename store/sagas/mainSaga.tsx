@@ -1,9 +1,8 @@
 import { AxiosResponse } from 'axios';
 import { call, fork, put, takeEvery } from 'redux-saga/effects';
 import * as actions from '../modules/mainPageReducer';
-// import { getMainPageCard, getMainSearchCard } from './sagaAPI/sagaAPI';
 import * as API from '../../api/index';
-//네이밍--------주석처리
+
 function* getMainCard(action: { type: string; payload: string }) {
   const query = action.payload;
   try {
@@ -25,8 +24,6 @@ function* getMainCardOrder(action: { type: string; payload: string }) {
 
 function* getSearchCard(action: { type: string; payload: string }) {
   const query = action.payload;
-  console.log('a');
-  console.log(query);
   try {
     const response: AxiosResponse = yield call(API.getMainSearchCard, query);
     yield put(actions.getSearchCardSuccess(response.data));

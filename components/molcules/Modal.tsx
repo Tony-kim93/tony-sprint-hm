@@ -9,13 +9,15 @@ interface likeDataProps {
   title: string;
   datas: any;
   type: string;
+  deleteUploadImg?: any;
 }
 
 export default function Modal({
   datas,
   handleModal,
   title,
-  type
+  type,
+  deleteUploadImg
 }: likeDataProps) {
   return (
     <S.ModalContainer>
@@ -31,7 +33,12 @@ export default function Modal({
                 width={100}
                 height={100}
               />
-              {type === 'regist' && <Button name="delete" />}
+              {type === 'regist' && (
+                <Button
+                  onClick={() => deleteUploadImg(data.id)}
+                  name="delete"
+                />
+              )}
             </div>
           ))}
         </S.GridLikeCard>

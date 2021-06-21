@@ -13,12 +13,23 @@ export const GET_SEARCH_CARD_SUCCESS = 'GET_SEARCH_CARD_SUCCESS';
 
 export const getMainCard = createAction(
   GET_MAIN_CARD,
-  function prepare(query: any) {
+  //   function prepare(query: any) {
+  //     return {
+  //       payload: query
+  //     };
+  //   }
+  // );
+  function prepare(limit, pageSet, value: any) {
     return {
-      payload: query
+      payload: {
+        limit,
+        pageSet,
+        value
+      }
     };
   }
 );
+
 export const getMainCardSuccess = createAction(
   GET_MAIN_CARD_SUCCESS,
   function prepare(card: any) {
@@ -46,9 +57,13 @@ export const getMainCardSuccess = createAction(
 
 export const getMainCardOrder = createAction(
   GET_MAIN_CARD_ORDER,
-  function prepare(query: string) {
+  function prepare(limit, pageSet, value: any) {
     return {
-      payload: query
+      payload: {
+        limit,
+        pageSet,
+        value
+      }
     };
   }
 );
