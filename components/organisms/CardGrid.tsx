@@ -1,16 +1,16 @@
 import React from 'react';
 import Card from '../molcules/Card';
 import * as S from '../../styles/globalStyles';
-import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import Toggle from '../molcules/Toggle';
+import * as TYPE from '../../interface/index';
 
 interface CardGridProps {
   sendEnjoy: any;
   sendCancelEnjoy: any;
   useInfinity?: any;
-  card: any;
-  value: any;
+  card: TYPE.likeProps[];
+  value: string;
 }
 
 export default function CardGrid({
@@ -20,7 +20,6 @@ export default function CardGrid({
   card,
   value
 }: CardGridProps) {
-  //useInfinite 인자로 전달받을떄만 실행가능
   if (useInfinity) {
     let pageSet = 0;
     useInfinity(pageSet, value);
@@ -28,7 +27,7 @@ export default function CardGrid({
 
   return (
     <S.GridMainCard>
-      {card.length > 1 ? (
+      {card.length > 5 ? (
         card.map((item: any) => {
           return (
             <S.CardWrapper key={item.id}>
@@ -56,8 +55,8 @@ export default function CardGrid({
       ) : (
         <Card
           url={card[0]?.url}
-          breedGroup={card[0]?.breeds[0].breed_group}
-          name={card[0]?.breeds[0].name}
+          breedGroup={card[0].breeds[0]?.breed_group}
+          name={card[0].breeds[0]?.name}
           width={350}
           height={350}
         />

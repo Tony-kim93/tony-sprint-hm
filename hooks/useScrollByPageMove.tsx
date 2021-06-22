@@ -17,8 +17,6 @@ export default function useScrollRestoration(router: any) {
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
       restoreScroll(router.asPath);
-      console.log(router.asPath);
-
       const onRouteChangeStart = () => {
         saveScroll(router.asPath);
       };

@@ -10,6 +10,7 @@ export function getMainPageCard(props: any) {
 }
 
 export function getMainSearchCard(query: any) {
+  console.log(query);
   return axios.get(`/images/search?${query}`);
 }
 

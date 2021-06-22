@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SortEngeine from '../organisms/SortEngeine';
 import CardGrid from '../organisms/CardGrid';
 import Header from '../organisms/Header';
 import * as API from '../../api/index';
 import { useInfinity } from '../../hooks/useInfinity';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import useScrollRestoration from '../../hooks/useScrollByPageMove';
 import { useRouter } from 'next/router';
+import * as actions from '../../store/modules/actions';
 
 export default function MainPageTemplate() {
+  const [input, setInput] = useState<string>('');
+  const dispatch = useDispatch();
+  const sendTypeInput = ['jpg', 'png', 'gif'];
+  const queryTypes = {
+    mime: 'mime_types=',
+    breed: 'breed_id='
+  };
+
   const router = useRouter();
   useScrollRestoration(router);
   const { value } = useSelector((state: any) => state.order);
@@ -22,10 +31,37 @@ export default function MainPageTemplate() {
     API.deleteFavourites(enjoyId);
   };
 
+  //sort
+  const handleChange = (e: any) => {
+    e.preventDefault();
+    setInput(e.target.value);
+  };
+
+  const searchById = (e: any) => {
+    e.preventDefault();
+    if (sendTypeInput.includes(input)) {
+      dispatch(actions.getSearchCard(`${queryTypes.mime}${input}`));
+    } else {
+      dispatch(actions.getSearchCard(`${queryTypes.breed}${input}`));
+    }
+  };
+
+  const test = () => {
+    dispatch(actions.changeOrder('ASC'));
+  };
+
+  const test2 = () => {
+    dispatch(actions.changeOrder('DESC'));
+  };
   return (
     <>
       <Header />
-      <SortEngeine />
+      <SortEngeine
+        handleChange={handleChange}
+        searchById={searchById}
+        test={test}
+        test2={test2}
+      />
       <CardGrid
         card={card}
         value={value}
