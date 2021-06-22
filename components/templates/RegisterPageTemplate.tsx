@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Input from '../atoms/Input';
 import Button from '../atoms/Button';
 import Img from '../atoms/Img';
-import axios from '../../libraries/axios/index';
 import * as S from '../../styles/globalStyles';
+import * as API from '../../api/index';
 import Header from '../organisms/Header';
 
 export default function RegisterPageTemplate() {
@@ -17,7 +17,7 @@ export default function RegisterPageTemplate() {
     setCreateObjectURL(fileUrl);
     setImage(file);
   };
-
+  //api종속적인 내용들은 api단에서 처리해야하는거임.
   const handleUpload = (e: any) => {
     e.preventDefault();
     const formData = new FormData();
@@ -34,9 +34,11 @@ export default function RegisterPageTemplate() {
         console.log(`loaded:${loaded} total:${total} percent:${percent}`);
       }
     };
-    axios
-      .post('/images/upload', formData, options)
-      .then((res) => console.log(res));
+    API.postImgUpload(formData, options).then((res) => {
+      if (res.status === 201) {
+        alert('SUCCESS');
+      }
+    });
   };
 
   return (

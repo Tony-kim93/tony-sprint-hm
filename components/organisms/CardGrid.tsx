@@ -9,7 +9,7 @@ interface CardGridProps {
   sendEnjoy: any;
   sendCancelEnjoy: any;
   useInfinity?: any;
-  card: TYPE.likeProps[];
+  card: any;
   value: string;
 }
 
@@ -26,9 +26,10 @@ export default function CardGrid({
   }
 
   return (
+    //cards
     <S.GridMainCard>
       {card.length > 5 ? (
-        card.map((item: any) => {
+        card.map((item: TYPE.cardProps) => {
           return (
             <S.CardWrapper key={item.id}>
               <Link href={`/Detail/${item.image.id}`}>

@@ -53,5 +53,11 @@ export function deleteUploadImg(query: any) {
   return axios.delete(`/images/${query}`);
 }
 
+export function postImgUpload(data: any, headers: any) {
+  console.log(typeof data);
+  console.log(typeof headers);
+  return axios.post(`/images/upload`, data, headers);
+}
+
 //gsr
 export const GSR = 'https://api.thedogapi.com/v1/images/';

@@ -19,7 +19,8 @@
     "custom.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "__test__/atomsTest/Loading.test.js"
+    "__test__/atomsTest/Loading.test.js",
+    "public/sw.js"
   ],
   "exclude": ["node_modules"]
 }

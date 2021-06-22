@@ -11,11 +11,7 @@ export const useInfinity = (pageSet: number, value: string) => {
         document.documentElement.scrollHeight - 1
       ) {
         pageSet++;
-        if (pageSet < 4)
-          dispatch(
-            // actions.getMainCard(`limit=50&page=${pageSet}&order=${value}`)
-            actions.getMainCard(50, pageSet, value)
-          );
+        if (pageSet < 4) dispatch(actions.getMainCard(50, pageSet, value));
       }
     };
     window.addEventListener('scroll', handleScroll);

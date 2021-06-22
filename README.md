@@ -77,6 +77,7 @@ console.log(test);
 
 return (
 <S.RegisterWrapper>
+
 <Header />
 <Img type="previewImg" src={createObjectURL} alt="test" />
 <Input accept="image/*" handleChange={handleChange} type="file" />
@@ -90,3 +91,5 @@ return (
 </S.RegisterWrapper>
 );
 }
+
+/// 이미지 삭제시 빠르게누르면 에러뜸

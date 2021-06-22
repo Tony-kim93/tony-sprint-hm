@@ -12,7 +12,9 @@ import * as actions from '../../store/modules/actions';
 export default function MainPageTemplate() {
   const [input, setInput] = useState<string>('');
   const dispatch = useDispatch();
+  //범용 상수값, 타입으로하거나 enum으로 하거나 리팩토링
   const sendTypeInput = ['jpg', 'png', 'gif'];
+  //인피닛처럼
   const queryTypes = {
     mime: 'mime_types=',
     breed: 'breed_id='
@@ -53,6 +55,7 @@ export default function MainPageTemplate() {
   const test2 = () => {
     dispatch(actions.changeOrder('DESC'));
   };
+  //naming....
   return (
     <>
       <Header />
