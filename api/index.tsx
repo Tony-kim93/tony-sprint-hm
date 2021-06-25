@@ -9,17 +9,17 @@ export function getMainPageCard(props: any) {
   );
 }
 
-export function getMainSearchCard(query: any) {
-  console.log(query);
+export function getMainSearchCard(query: string) {
+  console.log('query', query);
   return axios.get(`/images/search?${query}`);
 }
 
 //votes API
-export function getVotes(query: any) {
+export function getVotes(query: string) {
   return axios.get(`/votes?sub_id=${query}`);
 }
 
-export function deleteVotes(query: any) {
+export function deleteVotes(query: string) {
   return axios.delete(`/votes/${query}`);
 }
 
@@ -28,7 +28,7 @@ export function sendLikeVotes(body: any) {
 }
 
 //favourite API
-export function getFavourites(query: any) {
+export function getFavourites(query: string) {
   return axios.get(`/favourites?sub_id=${query}`);
 }
 
@@ -36,7 +36,7 @@ export function sendFavourites(body: any) {
   return axios.post('/favourites', body);
 }
 
-export function deleteFavourites(query: any) {
+export function deleteFavourites(query: number) {
   return axios.delete(`/favourites/${query}`);
 }
 
@@ -45,11 +45,11 @@ export function getLikedImg(query: string) {
   return axios.get(`/images/${query}`);
 }
 
-export function getLikedAllImg(query: any) {
+export function getLikedAllImg(query: string) {
   return axios.get(`/images?${query}`);
 }
 
-export function deleteUploadImg(query: any) {
+export function deleteUploadImg(query: string) {
   return axios.delete(`/images/${query}`);
 }
 

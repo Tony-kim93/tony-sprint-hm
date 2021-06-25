@@ -5,22 +5,22 @@ import Input from '../atoms/Input';
 interface sortProps {
   handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
   searchById: React.MouseEventHandler<HTMLButtonElement> | undefined;
-  test: React.MouseEventHandler<HTMLButtonElement> | undefined;
-  test2: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  handleOrderAsc: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  handleOrderDesc: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 export default function SortEngeine({
   handleChange,
   searchById,
-  test,
-  test2
+  handleOrderAsc,
+  handleOrderDesc
 }: sortProps) {
   return (
     <>
-      <Input handleChange={handleChange} type="text" placeholder="aa" />
+      <Input handleChange={handleChange} type="text" placeholder="test" />
       <Button type="searchBtn" onClick={searchById} name="search" />
-      <Button type="filterBtn" onClick={test} name="asc" />
-      <Button type="filterBtn" onClick={test2} name="desc" />
+      <Button type="filterBtn" onClick={handleOrderAsc} name="asc" />
+      <Button type="filterBtn" onClick={handleOrderDesc} name="desc" />
     </>
   );
 }

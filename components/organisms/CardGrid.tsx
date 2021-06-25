@@ -6,9 +6,10 @@ import Toggle from '../molcules/Toggle';
 import * as TYPE from '../../interface/index';
 
 interface CardGridProps {
-  sendEnjoy: any;
-  sendCancelEnjoy: any;
-  useInfinity?: any;
+  sendEnjoy: (id: string) => void;
+  sendCancelEnjoy: (enjoyId: number) => void;
+  useInfinity?: (pageSet: number, value: string) => void;
+  //얘 제네릭 쓸거임
   card: any;
   value: string;
 }
@@ -56,8 +57,8 @@ export default function CardGrid({
       ) : (
         <Card
           url={card[0]?.url}
-          breedGroup={card[0].breeds[0]?.breed_group}
-          name={card[0].breeds[0]?.name}
+          breedGroup={card[0]?.breeds[0].breed_group}
+          name={card[0]?.breeds[0].name}
           width={350}
           height={350}
         />

@@ -26,7 +26,7 @@ export interface registProps {
   width: number;
 }
 
-export interface likeProps {
+export interface itemProps {
   breeds: any;
   height: number;
   id: string;
@@ -53,4 +53,12 @@ export interface enjoyProps {
   image_id: string;
   sub_id: string;
   user_id: string;
+}
+
+export interface firebasePayload {
+  collapse_key: string;
+  data: string;
+  from: string;
+  notification: { title: string; body: string; tag: string };
+  priority: string;
 }

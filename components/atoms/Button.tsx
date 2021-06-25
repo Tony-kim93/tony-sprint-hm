@@ -3,7 +3,7 @@ import * as S from '../../styles/globalStyles';
 
 interface ButtonProps {
   name: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  onClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
   type?: string;
   style?: any;
 }

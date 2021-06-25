@@ -6,12 +6,6 @@ import { GetStaticProps } from 'next';
 import { END } from '@redux-saga/core';
 import MainPageTemplate from '../components/templates/MainPageTemplate';
 
-const FullWrapper = styled.div`
-  max-width: 850px;
-  margin: 0 auto;
-  text-align: center;
-`;
-
 const Home = () => {
   return (
     <FullWrapper>
@@ -30,3 +24,9 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
 );
 
 export default Home;
+
+const FullWrapper = styled.div`
+  max-width: 850px;
+  margin: 0 auto;
+  text-align: center;
+`;

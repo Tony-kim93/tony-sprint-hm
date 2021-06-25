@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, MouseEvent } from 'react';
 import Img from '../atoms/Img';
 import * as TYPE from '../../interface/index';
 
@@ -6,10 +6,10 @@ interface ToggleDataProps {
   src1: string;
   src2: string;
   toggle?: boolean;
-  sendEnroll?: any;
-  sendCancel?: any;
   id?: string;
   likeArr?: TYPE.likeArrProps;
+  sendEnroll?: any;
+  sendCancel?: any;
 }
 
 export default function Toggle({
@@ -21,11 +21,11 @@ export default function Toggle({
   likeArr
 }: ToggleDataProps) {
   const [toggle, setToggle] = useState<boolean>(false);
-  const [deleteId, setDeleteId] = useState<any>(undefined);
+  const [deleteId, setDeleteId] = useState<number>();
   useEffect(() => {
     if (id) {
       if (toggle) {
-        sendEnroll(id).then((res: any) => setDeleteId(res));
+        sendEnroll(id).then((res: number) => setDeleteId(res));
         return;
       }
       if (deleteId) sendCancel(deleteId);
@@ -36,7 +36,7 @@ export default function Toggle({
     if (likeArr?.length > 0) setToggle(true);
   }, [likeArr]);
 
-  const onClick = (e: any) => {
+  const handleToggle = (e: MouseEvent) => {
     e.preventDefault();
     setToggle(!toggle);
   };
@@ -44,7 +44,7 @@ export default function Toggle({
     <>
       <Img
         className="hoverImg"
-        onClick={onClick}
+        onClick={handleToggle}
         src={toggle ? src1 : src2}
         alt="test"
         width={15}

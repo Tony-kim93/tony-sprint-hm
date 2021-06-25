@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import Heading from '../atoms/Heading';
 import Button from '../atoms/Button';
 import Card from '../molcules/Card';
@@ -7,8 +7,8 @@ import * as TYPE from '../../interface/index';
 
 interface likeDataProps {
   handleModal: () => void;
+  datas: TYPE.registProps[] | TYPE.itemProps[];
   title: string;
-  datas: TYPE.registProps[] | TYPE.likeProps[];
   type: string;
   deleteUploadImg?: any;
 }

@@ -13,7 +13,7 @@ export default function ProfilePageTemplate() {
   const [like, setLike] = useState<TYPE.likeArrProps[]>([]);
   const [enjoy, setEnjoy] = useState<TYPE.enjoyProps[]>([]);
   const [regist, setRegist] = useState<TYPE.registProps[]>([]);
-  const [datas, setDatas] = useState<TYPE.likeProps[]>([]);
+  const [datas, setDatas] = useState<TYPE.itemProps[]>([]);
   const findDataId = like.map((item: TYPE.likeArrProps) => {
     return item.image_id;
   });

@@ -34,7 +34,8 @@ export default function DetailPage({ item }: itemProps) {
     });
     if (result.status === 200) return result.data.id;
   };
-  const sendUnLikeVote = (voteId: string) => {
+  const sendUnLikeVote = (voteId: number) => {
+    console.log(typeof voteId);
     API.deleteVotes(`${voteId}`);
   };
 
@@ -56,11 +57,6 @@ export default function DetailPage({ item }: itemProps) {
         width={350}
         height={350}
       />
-      <Link href="/">
-        <a>
-          <Button type="comeBackBtn" name="돌아가기" />
-        </a>
-      </Link>
       <Button
         type="viewerBtn"
         onClick={() => setIsVisible(!isVisible)}
