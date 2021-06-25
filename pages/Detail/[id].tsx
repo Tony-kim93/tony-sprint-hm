@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { GetServerSideProps } from 'next';
 import Button from '../../components/atoms/Button';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -26,7 +27,7 @@ export default function DetailPage({ item }: itemProps) {
     return <Error />;
   }
 
-  const sendLikeVote = async () => {
+  const handleEnroll = async () => {
     const result = await API.sendLikeVotes({
       image_id: item.breeds[0].reference_image_id,
       sub_id: 'eric',
@@ -34,7 +35,7 @@ export default function DetailPage({ item }: itemProps) {
     });
     if (result.status === 200) return result.data.id;
   };
-  const sendUnLikeVote = (voteId: number) => {
+  const handleCancel = (voteId: number) => {
     console.log(typeof voteId);
     API.deleteVotes(`${voteId}`);
   };
@@ -70,8 +71,8 @@ export default function DetailPage({ item }: itemProps) {
       <Toggle
         src1="/assets/redheart.png"
         src2="/assets/heart.png"
-        sendEnroll={sendLikeVote}
-        sendCancel={sendUnLikeVote}
+        handleEnroll={handleEnroll}
+        handleCancel={handleCancel}
         id={item.breeds[0].reference_image_id}
         likeArr={likeArr}
       />
@@ -97,12 +98,21 @@ export default function DetailPage({ item }: itemProps) {
   );
 }
 
-export async function getServerSideProps(context: any) {
+// export async function getServerSideProps(context: any) {
+//   console.log(context);
+//   console.log(typeof context);
+//   const { id } = context.query;
+//   const res = await fetch(`${API.GSR}${id}`);
+//   const item = await res.json();
+//   return { props: { item } };
+// }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.query;
   const res = await fetch(`${API.GSR}${id}`);
   const item = await res.json();
   return { props: { item } };
-}
+};
 
 const DetailWrapper = styled.div`
   max-width: 850px;

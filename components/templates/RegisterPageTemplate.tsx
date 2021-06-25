@@ -16,7 +16,6 @@ export default function RegisterPageTemplate({ token }: registerProps) {
   const [image, setImage] = useState<any>([]);
   const [createObjectURL, setCreateObjectURL] = useState<string>('');
   const [progress, setProgress] = useState<number>(0);
-  console.log(typeof token);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files !== null) {
@@ -48,7 +47,6 @@ export default function RegisterPageTemplate({ token }: registerProps) {
       .then((res) => {
         if (res.status === 201) {
           messaging.onMessage((payload: TYPE.firebasePayload) => {
-            console.log('payload', payload);
             alert(payload.notification.title);
           });
         }

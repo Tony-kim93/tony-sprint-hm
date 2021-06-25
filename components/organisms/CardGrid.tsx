@@ -6,8 +6,8 @@ import Toggle from '../molcules/Toggle';
 import * as TYPE from '../../interface/index';
 
 interface CardGridProps {
-  sendEnjoy: (id: string) => void;
-  sendCancelEnjoy: (enjoyId: number) => void;
+  handleEnroll: (id: string) => void;
+  handleCancel: (enjoyId: number) => void;
   useInfinity?: (pageSet: number, value: string) => void;
   //얘 제네릭 쓸거임
   card: any;
@@ -15,8 +15,8 @@ interface CardGridProps {
 }
 
 export default function CardGrid({
-  sendEnjoy,
-  sendCancelEnjoy,
+  handleEnroll,
+  handleCancel,
   useInfinity,
   card,
   value
@@ -45,8 +45,8 @@ export default function CardGrid({
                   <Toggle
                     src1={'/yellowstar.png'}
                     src2={'/star.png'}
-                    sendCancel={sendCancelEnjoy}
-                    sendEnroll={sendEnjoy}
+                    handleEnroll={handleEnroll}
+                    handleCancel={handleCancel}
                     id={item.image.id}
                   />
                 </a>

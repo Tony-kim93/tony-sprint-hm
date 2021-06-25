@@ -20,7 +20,6 @@ export default function Modal({
   type,
   deleteUploadImg
 }: likeDataProps) {
-  console.log('datas', datas);
   return (
     <S.ModalContainer>
       <div className="modalContent">

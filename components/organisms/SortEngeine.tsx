@@ -3,10 +3,10 @@ import Button from '../atoms/Button';
 import Input from '../atoms/Input';
 
 interface sortProps {
-  handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
-  searchById: React.MouseEventHandler<HTMLButtonElement> | undefined;
-  handleOrderAsc: React.MouseEventHandler<HTMLButtonElement> | undefined;
-  handleOrderDesc: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  handleChange: React.ChangeEventHandler<HTMLInputElement>;
+  searchById: React.MouseEventHandler<HTMLButtonElement>;
+  handleOrderAsc: React.MouseEventHandler<HTMLButtonElement>;
+  handleOrderDesc: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export default function SortEngeine({

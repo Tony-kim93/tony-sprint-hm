@@ -8,15 +8,15 @@ interface ToggleDataProps {
   toggle?: boolean;
   id?: string;
   likeArr?: TYPE.likeArrProps;
-  sendEnroll?: any;
-  sendCancel?: any;
+  handleEnroll?: any;
+  handleCancel?: any;
 }
 
 export default function Toggle({
   src1,
   src2,
-  sendEnroll,
-  sendCancel,
+  handleEnroll,
+  handleCancel,
   id,
   likeArr
 }: ToggleDataProps) {
@@ -25,10 +25,10 @@ export default function Toggle({
   useEffect(() => {
     if (id) {
       if (toggle) {
-        sendEnroll(id).then((res: number) => setDeleteId(res));
+        handleEnroll(id).then((res: number) => setDeleteId(res));
         return;
       }
-      if (deleteId) sendCancel(deleteId);
+      if (deleteId) handleCancel(deleteId);
     }
   }, [id, toggle]);
 

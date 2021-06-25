@@ -8,11 +8,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import useScrollRestoration from '../../hooks/useScrollByPageMove';
 import { useRouter } from 'next/router';
 import * as actions from '../../store/modules/actions';
+import * as TYPE from '../../interface/index';
 
 export default function MainPageTemplate() {
   const [input, setInput] = useState<string>('');
   const dispatch = useDispatch();
-  //범용 상수값, 타입으로하거나 enum으로 하거나 리팩토링
   const sendTypeInput = ['jpg', 'png', 'gif'];
   const queryTypes = {
     mime: 'mime_types=',
@@ -21,17 +21,22 @@ export default function MainPageTemplate() {
 
   const router = useRouter();
   // useScrollRestoration(router);
-  const { value } = useSelector((state: any) => state.order);
-  const { card } = useSelector((state: any) => state.mainPage);
+  const { value } = useSelector((state: TYPE.stateProps) => state.order);
+  const { card } = useSelector((state: TYPE.stateProps) => state.mainPage);
 
-  const sendEnjoy = async (id: string) => {
-    const result = await API.sendFavourites({ image_id: id, sub_id: 'test14' });
-    if (result.status === 200) return result.data.id;
+  const handleEnroll = async (id: string) => {
+    await API.sendFavourites({
+      image_id: id,
+      sub_id: 'test14'
+    })
+      .then((res) => {
+        if (res.status === 200) return res.data.id;
+      })
+      .catch((error) => console.log(error));
   };
 
-  const sendCancelEnjoy = (enjoyId: number) => {
-    console.log(typeof enjoyId);
-    API.deleteFavourites(enjoyId);
+  const handleCancel = (enjoyId: number) => {
+    API.deleteFavourites(enjoyId).catch((error) => console.log(error));
   };
 
   //sort
@@ -69,8 +74,8 @@ export default function MainPageTemplate() {
         card={card}
         value={value}
         useInfinity={useInfinity}
-        sendCancelEnjoy={sendCancelEnjoy}
-        sendEnjoy={sendEnjoy}
+        handleEnroll={handleEnroll}
+        handleCancel={handleCancel}
       />
     </>
   );

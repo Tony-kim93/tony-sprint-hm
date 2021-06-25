@@ -61,3 +61,5 @@ export function postImgUpload(data: any, headers: any) {
 
 //gsr
 export const GSR = 'https://api.thedogapi.com/v1/images/';
+
+//query box

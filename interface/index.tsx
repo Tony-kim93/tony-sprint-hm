@@ -13,6 +13,29 @@ export interface cardProps {
   weight: { imperial: string; metric: string };
 }
 
+export interface itemProps {
+  breeds: any;
+  height: number;
+  id: string;
+  url: string;
+  width: number;
+}
+
+export interface initialStateProps {
+  isLoading: boolean;
+  card: cardProps[] | itemProps[];
+}
+
+export interface stateProps {
+  mainPage: {
+    isLoading: boolean;
+    card: cardProps[] | itemProps[];
+  };
+  order: {
+    value: string;
+  };
+}
+
 //registCard Props item
 export interface registProps {
   breed_ids: any;
@@ -22,14 +45,6 @@ export interface registProps {
   id: string;
   original_filename: string;
   sub_id: string;
-  url: string;
-  width: number;
-}
-
-export interface itemProps {
-  breeds: any;
-  height: number;
-  id: string;
   url: string;
   width: number;
 }

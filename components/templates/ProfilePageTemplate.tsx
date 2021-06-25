@@ -5,6 +5,7 @@ import * as API from '../../api/index';
 import Modal from '../molcules/Modal';
 import Img from '../atoms/Img';
 import * as TYPE from '../../interface/index';
+import { error } from 'console';
 
 export default function ProfilePageTemplate() {
   const [isModal, setIsModal] = useState<boolean>(false);
@@ -30,62 +31,66 @@ export default function ProfilePageTemplate() {
     );
     return result;
   };
+
   useEffect(() => {
     getLikeData(findDataId).then((data) => setDatas(data));
   }, [like]);
 
-  useEffect(() => {
+  const handleLikeData = () => {
+    setIsModal(!isModal);
     API.getVotes('eric').then((result) => {
       if (result.status === 200) {
         setLike(result.data);
       }
     });
-  }, []);
+  };
 
-  useEffect(() => {
-    API.getFavourites('test14').then((result) => {
-      if (result.status === 200) {
-        setEnjoy(result.data);
-      }
-    });
-  }, []);
+  //즐겨찾기한 목록 가져오기
+  const handleEnjoyData = () => {
+    setIsVisible(!isVisible);
+    API.getFavourites('test14')
+      .then((result) => {
+        if (result.status === 200) {
+          setEnjoy(result.data);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
 
-  //등록 받아오기
-  useEffect(() => {
-    API.getLikedAllImg(`limit=${query.limit}&sub_id=${query.sub_id}`).then(
-      (result) => {
+  //내가 등록한 목록 가져오기
+  const handleRegistData = () => {
+    setIsRegist(true);
+    API.getLikedAllImg(`limit=${query.limit}&sub_id=${query.sub_id}`)
+      .then((result) => {
         if (result.status === 200) {
           setRegist(result.data);
         }
-      }
-    );
-  }, []);
+      })
+      .catch((error) => console.log(error));
+  };
 
   //내가 등록한거 삭제기능
   const deleteUploadImg = (imgId: string) => {
-    API.deleteUploadImg(imgId).then((result) => {
-      if (result.status === 204) {
-        API.getLikedAllImg(`limit=${query.limit}&sub_id=${query.sub_id}`).then(
-          (result) => setRegist(result.data)
-        );
-      }
-    });
+    API.deleteUploadImg(imgId)
+      .then((result) => {
+        if (result.status === 204) {
+          handleRegistData();
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   const handleModal = () => {
     setIsModal(!isModal);
-  };
-  const handleEnjoy = () => {
-    setIsVisible(!isVisible);
   };
   const handleRegist = () => {
     setIsRegist(!isRegist);
   };
   return (
     <S.ProfileWrapper>
-      <Button name="like" type="likeBtn" onClick={handleModal} />
-      <Button name="enjoy" type="likeBtn" onClick={handleEnjoy} />
-      <Button name="regist" type="likeBtn" onClick={handleRegist} />
+      <Button name="like" type="likeBtn" onClick={handleLikeData} />
+      <Button name="enjoy" type="likeBtn" onClick={handleEnjoyData} />
+      <Button name="regist" type="likeBtn" onClick={handleRegistData} />
       {isModal && (
         <Modal
           type="like"

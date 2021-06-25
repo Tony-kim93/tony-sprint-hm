@@ -1,4 +1,5 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
+import * as TYPE from '../../interface/index';
 
 // 초기 메인페이지 50
 export const GET_MAIN_CARD = 'card/GET_MAIN_CARD';
@@ -26,7 +27,7 @@ export const getMainCard = createAction(
 
 export const getMainCardSuccess = createAction(
   GET_MAIN_CARD_SUCCESS,
-  function prepare(card: any) {
+  function prepare(card: TYPE.cardProps) {
     return {
       payload: card
     };
@@ -51,7 +52,7 @@ export const getMainCardSuccess = createAction(
 
 export const getMainCardOrder = createAction(
   GET_MAIN_CARD_ORDER,
-  function prepare(limit, pageSet, value: any) {
+  function prepare(limit: number, pageSet: number, value: string) {
     return {
       payload: {
         limit,
@@ -64,7 +65,7 @@ export const getMainCardOrder = createAction(
 
 export const getMainCardOrderSuccess = createAction(
   GET_MAIN_CARD_ORDER_SUCCESS,
-  function prepare(card: any) {
+  function prepare(card: TYPE.cardProps) {
     return {
       payload: card
     };
@@ -73,7 +74,7 @@ export const getMainCardOrderSuccess = createAction(
 
 export const getSearchCard = createAction(
   GET_SEARCH_CARD,
-  function prepare(query: any) {
+  function prepare(query: string) {
     return {
       payload: query
     };
@@ -82,14 +83,14 @@ export const getSearchCard = createAction(
 
 export const getSearchCardSuccess = createAction(
   GET_SEARCH_CARD_SUCCESS,
-  function prepare(card: any) {
+  function prepare(card: TYPE.itemProps) {
     return {
       payload: card
     };
   }
 );
 
-const initialState: any = {
+const initialState: TYPE.initialStateProps = {
   isLoading: false,
   card: []
 };
