@@ -83,6 +83,7 @@ export default function ProfilePageTemplate() {
   const handleModal = () => {
     setIsModal(!isModal);
   };
+
   const handleRegist = () => {
     setIsRegist(!isRegist);
   };

@@ -1,4 +1,17 @@
-//얘 반복되는거 제네릭으로 뺴자
+//state types
+export interface initialStateProps {
+  isLoading: boolean;
+  card: cardProps[] | itemProps[];
+}
+
+export interface stateProps {
+  mainPage: initialStateProps;
+  order: {
+    value: string;
+  };
+}
+
+//main card type
 export interface cardProps {
   bred_for: string;
   breed_group: string;
@@ -13,6 +26,7 @@ export interface cardProps {
   weight: { imperial: string; metric: string };
 }
 
+// single card types
 export interface itemProps {
   breeds: any;
   height: number;
@@ -21,22 +35,7 @@ export interface itemProps {
   width: number;
 }
 
-export interface initialStateProps {
-  isLoading: boolean;
-  card: cardProps[] | itemProps[];
-}
-
-export interface stateProps {
-  mainPage: {
-    isLoading: boolean;
-    card: cardProps[] | itemProps[];
-  };
-  order: {
-    value: string;
-  };
-}
-
-//registCard Props item
+//registCard type
 export interface registProps {
   breed_ids: any;
   breeds: object;
@@ -49,6 +48,7 @@ export interface registProps {
   width: number;
 }
 
+// like types
 export interface likeArrProps {
   country_code: string;
   created_at: string;
@@ -61,6 +61,7 @@ export interface likeArrProps {
   breeds?: any;
 }
 
+// enjoy types
 export interface enjoyProps {
   created_at: string;
   id: number;
@@ -70,6 +71,7 @@ export interface enjoyProps {
   user_id: string;
 }
 
+// my firebase messaging get payload types
 export interface firebasePayload {
   collapse_key: string;
   data: string;
