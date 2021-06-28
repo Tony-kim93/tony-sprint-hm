@@ -7,6 +7,7 @@ import * as API from '../../api/index';
 import * as TYPE from '../../interface/index';
 import Header from '../organisms/Header';
 import firebase from '../../firebase/firebase';
+import axios from 'axios';
 
 interface registerProps {
   token: string;
@@ -46,12 +47,17 @@ export default function RegisterPageTemplate({ token }: registerProps) {
     API.postImgUpload(formData, options)
       .then((res) => {
         if (res.status === 201) {
+          handleFcm();
           messaging.onMessage((payload: TYPE.firebasePayload) => {
             alert(payload.notification.title);
+            return;
           });
         }
       })
       .catch((error) => console.log(error));
+  };
+  const handleFcm = () => {
+    axios.get(API.FCM).then((res) => console.log(res));
   };
 
   return (

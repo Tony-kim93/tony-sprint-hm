@@ -12,6 +12,7 @@ export default function Register() {
       .then((result: any) => setToken(result))
       .catch((error) => console.log(error));
   }, []);
+  console.log(token);
   return (
     <>
       <RegisterPageTemplate token={token} />
