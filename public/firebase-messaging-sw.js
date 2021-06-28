@@ -17,9 +17,9 @@ messaging.onBackgroundMessage(function (payload) {
     '[firebase-messaging-sw.js] Received background message ',
     payload
   );
-  const title = 'Background Message Title';
+  const title = '이미지 업로드 성공';
   const options = {
-    body: 'Background Message body.'
+    body: '정상적으로 업로드 되었습니다.'
   };
 
   self.registration.showNotification(title, options);

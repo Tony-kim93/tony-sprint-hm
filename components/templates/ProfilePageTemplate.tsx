@@ -5,7 +5,6 @@ import * as API from '../../api/index';
 import Modal from '../molcules/Modal';
 import Img from '../atoms/Img';
 import * as TYPE from '../../interface/index';
-import { error } from 'console';
 
 export default function ProfilePageTemplate() {
   const [isModal, setIsModal] = useState<boolean>(false);
@@ -48,7 +47,7 @@ export default function ProfilePageTemplate() {
   //즐겨찾기한 목록 가져오기
   const handleEnjoyData = () => {
     setIsVisible(!isVisible);
-    API.getFavourites('test14')
+    API.getFavourites('test15')
       .then((result) => {
         if (result.status === 200) {
           setEnjoy(result.data);
@@ -114,7 +113,13 @@ export default function ProfilePageTemplate() {
           {enjoy &&
             enjoy.map((item: any) => (
               <div key={item.id}>
-                <Img src={item.image.url} alt="test" width={100} height={100} />
+                <Img
+                  src={item.image.url}
+                  type="cardImg"
+                  alt="test"
+                  width={100}
+                  height={100}
+                />
               </div>
             ))}
         </S.GridLikeCard>

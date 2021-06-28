@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { memo } from 'react';
 import Heading from '../atoms/Heading';
 import Button from '../atoms/Button';
 import Card from '../molcules/Card';
@@ -12,15 +12,8 @@ interface likeDataProps {
   type: string;
   deleteUploadImg?: any;
 }
-
-export default function Modal({
-  datas,
-  handleModal,
-  title,
-  type,
-  deleteUploadImg
-}: likeDataProps) {
-  return (
+const Modal = memo(
+  ({ datas, handleModal, title, type, deleteUploadImg }: likeDataProps) => (
     <S.ModalContainer>
       <div className="modalContent">
         <Heading text={title} />
@@ -46,5 +39,7 @@ export default function Modal({
         <Button name="EXIT" onClick={handleModal} type="exitBtn" />
       </div>
     </S.ModalContainer>
-  );
-}
+  )
+);
+
+export default Modal;

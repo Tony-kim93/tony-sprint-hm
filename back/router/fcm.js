@@ -12,8 +12,9 @@ router.get('/', (req, res, next) => {
   }
 
   let fcm_target_token =
-    'dG036TneAp39RvqTlwUDa4:APA91bFpB6JzSZ0ws3m2p--5RL8uvyyPBz5v-SM-iNGl5vthxcUGiqwXWYyfmURUCu68kcLuGiljNn821iWDQJYvYh1jtosJWkYTgK0lwOKGamWu1WG4jnxTMJJaNY8_e6muilYqLIUf';
-  let fcm_message = {
+    'dG036TneAp39RvqTlwUDa4:APA91bG_T5flOQ6_Dqo_OSxpCMLck_y6eypOHXJKSGBCCOBbORuqmcDh33MfgTCjuQGaAyf7XdZ-3XMmnOiAd0VrZBUH6UDFF7TeGEu_avlm8edYxQjs37HTgY2zvOJMO-GfLNdI94Kk';
+
+  let message = {
     notification: {
       title: '이미지 업로드 성공',
       body: 'test'
@@ -22,7 +23,7 @@ router.get('/', (req, res, next) => {
   };
   admin
     .messaging()
-    .send(fcm_message)
+    .send(message)
     .then(function (res) {
       console.log('fcm success', res);
     })

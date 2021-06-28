@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from 'react';
+import React, { useCallback, useState, MouseEvent } from 'react';
 import SortEngeine from '../organisms/SortEngeine';
 import CardGrid from '../organisms/CardGrid';
 import Header from '../organisms/Header';
@@ -24,43 +24,46 @@ export default function MainPageTemplate() {
   const { value } = useSelector((state: TYPE.stateProps) => state.order);
   const { card } = useSelector((state: TYPE.stateProps) => state.mainPage);
 
-  const handleEnroll = async (id: string) => {
-    await API.sendFavourites({
-      image_id: id,
-      sub_id: 'test14'
-    })
-      .then((res) => {
-        if (res.status === 200) return res.data.id;
-      })
-      .catch((error) => console.log(error));
-  };
+  const handleEnroll = useCallback(async (id: string) => {
+    try {
+      const result = await API.sendFavourites({
+        image_id: id,
+        sub_id: 'test15'
+      });
+      if (result.status === 200) return result.data.id;
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
-  const handleCancel = (enjoyId: number) => {
+  const handleCancel = useCallback(async (enjoyId: number) => {
     API.deleteFavourites(enjoyId).catch((error) => console.log(error));
-  };
+  }, []);
 
-  //sort
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setInput(e.target.value);
-  };
+  const handleChange = useCallback(
+    (e) => {
+      setInput(e.target.value);
+      console.log(input);
+    },
+    [input]
+  );
 
-  const searchById = (e: MouseEvent) => {
-    e.preventDefault();
+  const searchById = useCallback(() => {
     if (sendTypeInput.includes(input)) {
       dispatch(actions.getSearchCard(`${queryTypes.mime}${input}`));
     } else {
       dispatch(actions.getSearchCard(`${queryTypes.breed}${input}`));
     }
-  };
+  }, [input]);
 
-  const handleOrderAsc = () => {
+  const handleOrderAsc = useCallback(() => {
     dispatch(actions.changeOrder('ASC'));
-  };
+  }, []);
 
-  const handleOrderDesc = () => {
+  const handleOrderDesc = useCallback(() => {
     dispatch(actions.changeOrder('DESC'));
-  };
+  }, []);
+
   return (
     <>
       <Header />

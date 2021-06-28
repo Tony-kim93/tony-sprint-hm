@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Button from '../atoms/Button';
 import Input from '../atoms/Input';
 
@@ -9,18 +9,19 @@ interface sortProps {
   handleOrderDesc: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export default function SortEngeine({
-  handleChange,
-  searchById,
-  handleOrderAsc,
-  handleOrderDesc
-}: sortProps) {
-  return (
+const SortEngeine = memo(
+  ({
+    handleChange,
+    searchById,
+    handleOrderAsc,
+    handleOrderDesc
+  }: sortProps) => (
     <>
       <Input handleChange={handleChange} type="text" placeholder="test" />
       <Button type="searchBtn" onClick={searchById} name="search" />
       <Button type="filterBtn" onClick={handleOrderAsc} name="asc" />
       <Button type="filterBtn" onClick={handleOrderDesc} name="desc" />
     </>
-  );
-}
+  )
+);
+export default SortEngeine;

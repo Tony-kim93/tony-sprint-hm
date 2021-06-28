@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 interface ParagraphProps {
   text: string;
 }
 
-export default function Paragraph({ text }: ParagraphProps) {
-  return <p>{text}</p>;
-}
+const Paragraph = memo(({ text }: ParagraphProps) => <p>{text}</p>);
+
+export default Paragraph;

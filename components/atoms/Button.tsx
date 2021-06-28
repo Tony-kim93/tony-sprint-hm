@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import * as S from '../../styles/globalStyles';
 
 interface ButtonProps {
@@ -8,10 +8,10 @@ interface ButtonProps {
   style?: any;
 }
 
-export default function Button({ name, onClick, type }: ButtonProps) {
-  return (
-    <S.MainEngineButton type={type} onClick={onClick}>
-      {name}
-    </S.MainEngineButton>
-  );
-}
+const Button = memo(({ name, onClick, type }: ButtonProps) => (
+  <S.MainEngineButton type={type} onClick={onClick}>
+    {name}
+  </S.MainEngineButton>
+));
+
+export default Button;

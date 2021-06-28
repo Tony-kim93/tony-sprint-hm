@@ -1,4 +1,4 @@
-import React, { useState, useEffect, MouseEvent } from 'react';
+import React, { memo, useState, useEffect, MouseEvent } from 'react';
 import Img from '../atoms/Img';
 import * as TYPE from '../../interface/index';
 
@@ -12,44 +12,48 @@ interface ToggleDataProps {
   handleCancel?: any;
 }
 
-export default function Toggle({
-  src1,
-  src2,
-  handleEnroll,
-  handleCancel,
-  id,
-  likeArr
-}: ToggleDataProps) {
-  const [toggle, setToggle] = useState<boolean>(false);
-  const [deleteId, setDeleteId] = useState<number>();
-  useEffect(() => {
-    if (id) {
-      if (toggle) {
-        handleEnroll(id).then((res: number) => setDeleteId(res));
-        return;
+const Toggle = memo(
+  ({
+    src1,
+    src2,
+    handleEnroll,
+    handleCancel,
+    id,
+    likeArr
+  }: ToggleDataProps) => {
+    const [toggle, setToggle] = useState<boolean>(false);
+    const [deleteId, setDeleteId] = useState<number>();
+    useEffect(() => {
+      if (id) {
+        if (toggle) {
+          return handleEnroll(id).then((res: number) => setDeleteId(res));
+        }
+        if (deleteId) handleCancel(deleteId);
       }
-      if (deleteId) handleCancel(deleteId);
-    }
-  }, [id, toggle]);
+    }, [id, toggle]);
 
-  useEffect(() => {
-    if (likeArr?.length > 0) setToggle(true);
-  }, [likeArr]);
+    useEffect(() => {
+      if (likeArr?.length > 0) setToggle(true);
+    }, [likeArr]);
 
-  const handleToggle = (e: MouseEvent) => {
-    e.preventDefault();
-    setToggle(!toggle);
-  };
-  return (
-    <>
-      <Img
-        className="hoverImg"
-        onClick={handleToggle}
-        src={toggle ? src1 : src2}
-        alt="test"
-        width={15}
-        height={15}
-      />
-    </>
-  );
-}
+    const handleToggle = (e: MouseEvent) => {
+      e.preventDefault();
+      setToggle(!toggle);
+    };
+
+    return (
+      <>
+        <Img
+          className="hoverImg"
+          onClick={handleToggle}
+          src={toggle ? src1 : src2}
+          alt="test"
+          width={15}
+          height={15}
+        />
+      </>
+    );
+  }
+);
+
+export default Toggle;

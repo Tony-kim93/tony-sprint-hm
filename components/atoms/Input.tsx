@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 
 interface InputProps {
@@ -8,20 +8,15 @@ interface InputProps {
   accept?: string;
 }
 
-export default function Input({
-  type,
-  placeholder,
-  handleChange,
-  accept
-}: InputProps) {
-  return (
-    <MainPageSearchInput
-      onChange={handleChange}
-      type={type}
-      placeholder={placeholder}
-      accept={accept}></MainPageSearchInput>
-  );
-}
+const Input = ({ type, placeholder, handleChange, accept }: InputProps) => (
+  <MainPageSearchInput
+    onChange={handleChange}
+    type={type}
+    placeholder={placeholder}
+    accept={accept}></MainPageSearchInput>
+);
+
+export default Input;
 
 const MainPageSearchInput = styled.input`
   margin-right: 50px;

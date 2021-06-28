@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 interface HeadingProps {
   text: string;
 }
 
-export default function Heading({ text }: HeadingProps) {
-  return <h1>{text}</h1>;
-}
+const Heading = memo(({ text }: HeadingProps) => <h1>{text}</h1>);
+
+export default Heading;

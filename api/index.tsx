@@ -10,7 +10,6 @@ export function getMainPageCard(props: any) {
 }
 
 export function getMainSearchCard(query: string) {
-  console.log('query', query);
   return axios.get(`/images/search?${query}`);
 }
 
@@ -37,6 +36,7 @@ export function sendFavourites(body: any) {
 }
 
 export function deleteFavourites(query: number) {
+  console.log(query);
   return axios.delete(`/favourites/${query}`);
 }
 
@@ -54,8 +54,6 @@ export function deleteUploadImg(query: string) {
 }
 
 export function postImgUpload(data: any, headers: any) {
-  console.log(typeof data);
-  console.log(typeof headers);
   return axios.post(`/images/upload`, data, headers);
 }
 

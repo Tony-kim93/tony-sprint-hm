@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import * as S from '../../styles/globalStyles';
 
 interface ImgProps {
@@ -10,16 +10,9 @@ interface ImgProps {
   className?: string;
   type?: string;
 }
-export default function Img({
-  src,
-  alt,
-  width,
-  height,
-  onClick,
-  className,
-  type
-}: ImgProps) {
-  return (
+
+const Img = memo(
+  ({ src, alt, width, height, onClick, className, type }: ImgProps) => (
     <S.ImgStyle
       type={type}
       className={className}
@@ -29,5 +22,7 @@ export default function Img({
       width={width}
       height={height}
     />
-  );
-}
+  )
+);
+
+export default Img;

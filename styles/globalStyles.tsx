@@ -14,19 +14,6 @@ interface ImgProps {
   type?: any;
 }
 
-export const ImgStyle = styled.img<ImgProps>`
-  ${(props) =>
-    props.type === 'previewImg' &&
-    css`
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 500px;
-      height: 500px;
-      border: 1px solid black;
-    `}
-`;
-
 export const MainEngineButton = styled.button<ButtonProps>`
   width: 100px;
   height: 40px;
@@ -92,7 +79,6 @@ export const MainEngineButton = styled.button<ButtonProps>`
     ${(props) =>
     props.type === 'exitBtn' &&
     css`
-      /* width: 40px; */
       background-color: peru;
       color: #fff;
       margin-right: 30px;
@@ -164,6 +150,36 @@ export const ProfileWrapper = styled.div`
 `;
 
 export const RegisterWrapper = styled.div`
-  max-width: 850px;
+  max-width: 500px;
   margin: 0 auto;
+
+  .registerProgress {
+    width: 300px;
+    display: flex;
+    margin-top: 30px;
+  }
+`;
+
+export const ImgStyle = styled.img<ImgProps>`
+  ${(props) =>
+    props.type === 'previewImg' &&
+    css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+      width: 300px;
+      height: 300px;
+      border-radius: 20px;
+    `}
+
+  ${(props) =>
+    props.type === 'cardImg' &&
+    css`
+      border-radius: 20px;
+      &:hover {
+        transform: scale(1.1);
+        transition: 0.5s;
+      }
+    `}
 `;

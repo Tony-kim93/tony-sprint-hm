@@ -28,6 +28,7 @@ export default function DetailPage({ item }: itemProps) {
   }
 
   const handleEnroll = async () => {
+    console.log('asdf');
     const result = await API.sendLikeVotes({
       image_id: item.breeds[0].reference_image_id,
       sub_id: 'eric',
@@ -36,8 +37,7 @@ export default function DetailPage({ item }: itemProps) {
     if (result.status === 200) return result.data.id;
   };
   const handleCancel = (voteId: number) => {
-    console.log(typeof voteId);
-    API.deleteVotes(`${voteId}`);
+    API.deleteVotes(`${voteId}`).catch((err) => console.log(err));
   };
 
   // //image id값 받아오기

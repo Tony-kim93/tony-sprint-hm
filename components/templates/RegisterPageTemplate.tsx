@@ -1,4 +1,4 @@
-import React, { useState, useEffect, MouseEvent } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import Input from '../atoms/Input';
 import Button from '../atoms/Button';
 import Img from '../atoms/Img';
@@ -38,7 +38,6 @@ export default function RegisterPageTemplate({ token }: registerProps) {
         'Content-Type': 'multipart/form-data'
       },
       onUploadProgress: (progressEvent: any) => {
-        console.log(progressEvent);
         const { loaded, total } = progressEvent;
         let percent = Math.round((loaded * 100) / total);
         setProgress(percent);
@@ -49,13 +48,13 @@ export default function RegisterPageTemplate({ token }: registerProps) {
         if (res.status === 201) {
           handleFcm();
           messaging.onMessage((payload: TYPE.firebasePayload) => {
-            alert(payload.notification.title);
-            return;
+            return alert(payload.notification.title);
           });
         }
       })
       .catch((error) => console.log(error));
   };
+
   const handleFcm = () => {
     axios.get(API.FCM).then((res) => console.log(res));
   };
@@ -63,10 +62,10 @@ export default function RegisterPageTemplate({ token }: registerProps) {
   return (
     <S.RegisterWrapper>
       <Header />
-      <Img type="previewImg" src={createObjectURL} alt="test" />
+      <Img type="previewImg" src={createObjectURL} alt="" />
       <Input accept="image/*" handleChange={handleChange} type="file" />
       <Button name="upload" onClick={handleUpload} />
-      <progress max="100" value={progress} />
+      <progress className="registerProgress" max="100" value={progress} />
       {progress}%
     </S.RegisterWrapper>
   );
