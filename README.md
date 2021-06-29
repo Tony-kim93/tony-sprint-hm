@@ -93,3 +93,5 @@ return (
 }
 
 /// 이미지 삭제시 빠르게누르면 에러뜸
+
+// const { card } = useSelector((state: TYPE.stateProps) => state.mainPage);

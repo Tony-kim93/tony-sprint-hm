@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
+import styled from 'styled-components';
+import { useRouter } from 'next/router';
 import Button from '../../components/atoms/Button';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import Error from '../../pages/404';
-import * as API from '../../api/index';
-import { useSelector } from 'react-redux';
+import Error from '../404';
 import Card from '../../components/molcules/Card';
+import Toggle from '../../components/molcules/Toggle';
+import * as API from '../../api/index';
 import * as S from '../../styles/globalStyles';
 import * as TYPE from '../../interface/index';
-import styled from 'styled-components';
-import Toggle from '../../components/molcules/Toggle';
 
 interface itemProps {
   item: TYPE.likeArrProps;
 }
 export default function DetailPage({ item }: itemProps) {
+  const [cardArr, setCardArr] = useState<any>([]);
   const [likeArr, setLikeArr] = useState<any>([]);
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const { card } = useSelector((state: any) => state.mainPage);
   const DetailImgViewer = dynamic(() => import('react-viewer'), { ssr: false });
   const imageSrc = [{ src: item.url }];
   const router = useRouter();
@@ -28,7 +27,6 @@ export default function DetailPage({ item }: itemProps) {
   }
 
   const handleEnroll = async () => {
-    console.log('asdf');
     const result = await API.sendLikeVotes({
       image_id: item.breeds[0].reference_image_id,
       sub_id: 'eric',
@@ -48,6 +46,13 @@ export default function DetailPage({ item }: itemProps) {
       }
     });
   }, []);
+
+  useEffect(() => {
+    API.getCardBreeds('50')
+      .then((res) => setCardArr(res.data))
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <DetailWrapper>
       <h1>상세 페이지</h1>
@@ -78,7 +83,7 @@ export default function DetailPage({ item }: itemProps) {
       />
 
       <S.GridMainCard>
-        {card?.map((item: any) => {
+        {cardArr?.map((item: any) => {
           return (
             <Link key={item.id} href={`/Detail/${item.image.id}`}>
               <a>

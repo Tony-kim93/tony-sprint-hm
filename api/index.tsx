@@ -13,6 +13,12 @@ export function getMainSearchCard(query: string) {
   return axios.get(`/images/search?${query}`);
 }
 
+//breeds API
+
+export function getCardBreeds(query: string) {
+  return axios.get(`/breeds?limit=${query}`);
+}
+
 //votes API
 export function getVotes(query: string) {
   return axios.get(`/votes?sub_id=${query}`);
