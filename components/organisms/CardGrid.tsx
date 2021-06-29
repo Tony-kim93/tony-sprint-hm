@@ -9,6 +9,7 @@ interface CardGridProps {
   handleEnroll: (id: string) => void;
   handleCancel: (enjoyId: number) => void;
   useInfinity?: (pageSet: number, value: string) => void;
+  //generics
   card: any;
   value: string;
 }

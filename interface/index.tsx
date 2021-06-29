@@ -28,7 +28,7 @@ export interface cardProps {
 
 // single card types
 export interface itemProps {
-  breeds: any;
+  breeds?: any;
   height: number;
   id: string;
   url: string;

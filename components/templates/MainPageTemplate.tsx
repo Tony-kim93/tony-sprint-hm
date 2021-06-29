@@ -14,16 +14,12 @@ export default function MainPageTemplate() {
   const [input, setInput] = useState<string>('');
   const dispatch = useDispatch();
   const sendTypeInput = ['jpg', 'png', 'gif'];
-  const queryTypes = {
-    mime: 'mime_types=',
-    breed: 'breed_id='
-  };
-
   const router = useRouter();
-  // useScrollRestoration(router);
   const { value } = useSelector((state: TYPE.stateProps) => state.order);
   const { card } = useSelector((state: TYPE.stateProps) => state.mainPage);
+  useScrollRestoration(router);
 
+  //즐겨찾기 등록 api요청
   const handleEnroll = useCallback(async (id: string) => {
     try {
       const result = await API.sendFavourites({
@@ -36,30 +32,33 @@ export default function MainPageTemplate() {
     }
   }, []);
 
+  //즐겨찾기 취소 api요청
   const handleCancel = useCallback(async (enjoyId: number) => {
     API.deleteFavourites(enjoyId).catch((error) => console.log(error));
   }, []);
 
+  //input창 value값 저장 기능
   const handleChange = useCallback(
     (e) => {
       setInput(e.target.value);
-      console.log(input);
     },
     [input]
   );
 
+  // sendTypeInput을 활용해 검색 api요청
   const searchById = useCallback(() => {
     if (sendTypeInput.includes(input)) {
-      dispatch(actions.getSearchCard(`${queryTypes.mime}${input}`));
+      dispatch(actions.getSearchCard(`${API.queryTypes.mime}${input}`));
     } else {
-      dispatch(actions.getSearchCard(`${queryTypes.breed}${input}`));
+      dispatch(actions.getSearchCard(`${API.queryTypes.breed}${input}`));
     }
   }, [input]);
 
+  //redux에서 단순히 query값만 변경 (api요청X)
   const handleOrderAsc = useCallback(() => {
     dispatch(actions.changeOrder('ASC'));
   }, []);
-
+  //redux에서 단순히 query값만 변경 (api요청X)
   const handleOrderDesc = useCallback(() => {
     dispatch(actions.changeOrder('DESC'));
   }, []);

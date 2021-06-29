@@ -1,7 +1,6 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
 import * as TYPE from '../../interface/index';
 
-// 초기 메인페이지 50
 export const GET_MAIN_CARD = 'card/GET_MAIN_CARD';
 export const GET_MAIN_CARD_SUCCESS = 'card/GET_MAIN_CARD_SUCCESS';
 export const GET_MAIN_CARD_FAILURE = 'card/GET_MAIN_CARD_FAILURE';
@@ -14,7 +13,7 @@ export const GET_SEARCH_CARD_SUCCESS = 'GET_SEARCH_CARD_SUCCESS';
 
 export const getMainCard = createAction(
   GET_MAIN_CARD,
-  function prepare(limit, pageSet, value: any) {
+  function prepare(limit: number, pageSet: number, value: string) {
     return {
       payload: {
         limit,

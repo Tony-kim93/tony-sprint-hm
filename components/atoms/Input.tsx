@@ -8,12 +8,14 @@ interface InputProps {
   accept?: string;
 }
 
-const Input = ({ type, placeholder, handleChange, accept }: InputProps) => (
-  <MainPageSearchInput
-    onChange={handleChange}
-    type={type}
-    placeholder={placeholder}
-    accept={accept}></MainPageSearchInput>
+const Input = memo(
+  ({ type, placeholder, handleChange, accept }: InputProps) => (
+    <MainPageSearchInput
+      onChange={handleChange}
+      type={type}
+      placeholder={placeholder}
+      accept={accept}></MainPageSearchInput>
+  )
 );
 
 export default Input;

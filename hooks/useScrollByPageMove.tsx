@@ -7,7 +7,7 @@ function saveScroll(scrollPosition: string) {
 }
 
 function restoreScroll(scrollPosition: string) {
-  const scroll = JSON.parse(sessionStorage.getItem(scrollPosition) || '');
+  const scroll = JSON.parse(sessionStorage.getItem(scrollPosition) || '{}');
   if (scroll) {
     window.scrollTo(scroll.x, scroll.y);
   }
@@ -20,7 +20,6 @@ export default function useScrollRestoration(router: any) {
       const onRouteChangeStart = () => {
         saveScroll(router.asPath);
       };
-      //routeChangeStart => 경로가 변경되면 실행된다.
       Router.events.on('routeChangeStart', onRouteChangeStart);
       return () => {
         Router.events.off('routeChangeStart', onRouteChangeStart);

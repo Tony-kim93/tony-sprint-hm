@@ -17,33 +17,36 @@ export default function ProfilePageTemplate() {
   const findDataId = like.map((item: TYPE.likeArrProps) => {
     return item.image_id;
   });
-  const query = {
-    limit: 10,
-    sub_id: '1234'
-  };
 
   const getLikeData = (idArr: string[]) => {
     const result = Promise.all(
-      idArr.map((id: any) => {
-        return API.getLikedImg(`${id}`).then((res) => res.data);
+      idArr.map((id: string) => {
+        return API.getLikedImg(`${id}`)
+          .then((res) => res.data)
+          .catch((err) => console.log(err));
       })
     );
     return result;
   };
 
+  //내가 좋아요한 데이터 가져오기
   useEffect(() => {
-    getLikeData(findDataId).then((data) => setDatas(data));
+    getLikeData(findDataId)
+      .then((data) => setDatas(data))
+      .catch((err) => console.log(err));
   }, [like]);
 
+  //modal click시 피요한 데이터 api요청
   const handleLikeData = () => {
     setIsModal(!isModal);
-    API.getVotes('eric').then((result) => {
-      if (result.status === 200) {
-        setLike(result.data);
-      }
-    });
+    API.getVotes('eric')
+      .then((result) => {
+        if (result.status === 200) {
+          setLike(result.data);
+        }
+      })
+      .catch((err) => console.log(err));
   };
-
   //즐겨찾기한 목록 가져오기
   const handleEnjoyData = () => {
     setIsVisible(!isVisible);
@@ -59,7 +62,7 @@ export default function ProfilePageTemplate() {
   //내가 등록한 목록 가져오기
   const handleRegistData = () => {
     setIsRegist(true);
-    API.getLikedAllImg(`limit=${query.limit}&sub_id=${query.sub_id}`)
+    API.getLikedAllImg(10, '1234')
       .then((result) => {
         if (result.status === 200) {
           setRegist(result.data);

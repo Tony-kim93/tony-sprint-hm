@@ -1,7 +1,10 @@
 import axios from '../libraries/axios/index';
 
 export const IP = 'https://api.ipify.org?format=json';
-
+export const queryTypes = {
+  mime: 'mime_types=',
+  breed: 'breed_id='
+};
 //saga API
 export function getMainPageCard(props: any) {
   return axios.get(
@@ -51,8 +54,8 @@ export function getLikedImg(query: string) {
   return axios.get(`/images/${query}`);
 }
 
-export function getLikedAllImg(query: string) {
-  return axios.get(`/images?${query}`);
+export function getLikedAllImg(queryLimit: number, queryId: string) {
+  return axios.get(`/images?limit=${queryLimit}&sub_id=${queryId}`);
 }
 
 export function deleteUploadImg(query: string) {
