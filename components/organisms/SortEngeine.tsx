@@ -17,7 +17,7 @@ const SortEngeine = memo(
     handleOrderDesc
   }: sortProps) => (
     <>
-      <Input handleChange={handleChange} type="text" placeholder="test" />
+      <Input handleChange={handleChange} type="text" placeholder="search..." />
       <Button type="searchBtn" onClick={searchById} name="search" />
       <Button type="filterBtn" onClick={handleOrderAsc} name="asc" />
       <Button type="filterBtn" onClick={handleOrderDesc} name="desc" />

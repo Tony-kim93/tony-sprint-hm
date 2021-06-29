@@ -63,3 +63,5 @@ export const GSR = 'https://api.thedogapi.com/v1/images/';
 //node
 
 export const FCM = 'http://localhost:5000/fcm';
+export const INTRO = 'http://localhost:5000/hm/intro';
+export const MEMBER = 'http://localhost:5000/hm/members';

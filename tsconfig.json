@@ -23,7 +23,9 @@
     "public/firebase-messaging-sw.js",
     "firebase/firebase.tsx",
     "firebase/firebase-messaging-sw.js",
-    "firebase/firebase-messaging-sw.js"
+    "firebase/firebase-messaging-sw.js",
+    "data.js",
+    "introduce.js"
   ],
   "exclude": ["node_modules"]
 }

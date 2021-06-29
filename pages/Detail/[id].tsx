@@ -98,15 +98,6 @@ export default function DetailPage({ item }: itemProps) {
   );
 }
 
-// export async function getServerSideProps(context: any) {
-//   console.log(context);
-//   console.log(typeof context);
-//   const { id } = context.query;
-//   const res = await fetch(`${API.GSR}${id}`);
-//   const item = await res.json();
-//   return { props: { item } };
-// }
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.query;
   const res = await fetch(`${API.GSR}${id}`);

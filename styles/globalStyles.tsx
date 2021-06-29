@@ -183,3 +183,21 @@ export const ImgStyle = styled.img<ImgProps>`
       }
     `}
 `;
+
+export const IntroducePage = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  .gridMember {
+    display: grid;
+    grid-column-gap: 50px;
+    grid-template-columns: auto auto auto;
+    margin-top: 25px;
+  }
+`;
+// export const GridLikeCard = styled.div`
+//   display: grid;
+//   grid-column-gap: 50px;
+//   grid-template-columns: auto auto auto auto;
+//   margin-top: 25px;
+// `;
