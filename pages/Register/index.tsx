@@ -16,6 +16,7 @@ export default function Register() {
         console.log(token);
       });
   }, []);
+  console.log(token);
   // useEffect(() => {
   //   enableMessaging();
   //   localforage
@@ -23,7 +24,6 @@ export default function Register() {
   //     .then((result: any) => setToken(result))
   //     .catch((error) => console.log(error));
   // }, []);
-  console.log(token);
   return (
     <>
       <RegisterPageTemplate token={token} />

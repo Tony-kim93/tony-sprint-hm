@@ -2,12 +2,12 @@ import React, { useState, MouseEvent } from 'react';
 import Input from '../atoms/Input';
 import Button from '../atoms/Button';
 import Img from '../atoms/Img';
+import Header from '../organisms/Header';
+import axios from 'axios';
+import firebase from '../../firebase/firebase';
 import * as S from '../../styles/globalStyles';
 import * as API from '../../api/index';
 import * as TYPE from '../../interface/index';
-import Header from '../organisms/Header';
-import firebase from '../../firebase/firebase';
-import axios from 'axios';
 
 interface registerProps {
   token: string;

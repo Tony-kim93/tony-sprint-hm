@@ -1,10 +1,7 @@
 import axios from '../libraries/axios/index';
 
 export const IP = 'https://api.ipify.org?format=json';
-export const queryTypes = {
-  mime: 'mime_types=',
-  breed: 'breed_id='
-};
+
 //saga API
 export function getMainPageCard(props: any) {
   return axios.get(
@@ -17,7 +14,6 @@ export function getMainSearchCard(query: string) {
 }
 
 //breeds API
-
 export function getCardBreeds(query: string) {
   return axios.get(`/breeds?limit=${query}`);
 }
@@ -74,3 +70,8 @@ export const GSR = 'https://api.thedogapi.com/v1/images/';
 export const FCM = 'http://localhost:5000/fcm';
 export const INTRO = 'http://localhost:5000/hm/intro';
 export const MEMBER = 'http://localhost:5000/hm/members';
+
+export const queryTypes = {
+  mime: 'mime_types=',
+  breed: 'breed_id='
+};

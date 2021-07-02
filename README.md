@@ -95,3 +95,5 @@ return (
 /// 이미지 삭제시 빠르게누르면 에러뜸
 
 // const { card } = useSelector((state: TYPE.stateProps) => state.mainPage);
+
+// src...이녀석이없으니...절대경로가안되네

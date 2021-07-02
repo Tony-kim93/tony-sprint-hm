@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from '../../components/molcules/Modal';
+import Modal from '../../components/molecules/Modal';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 describe('<MODAL>', () => {

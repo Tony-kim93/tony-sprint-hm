@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Toggle from '../../components/molcules/Toggle';
+import Toggle from '../../components/molecules/Toggle';
 
 describe('<TOGGLE>', () => {
   it('test img component is rendered', () => {
@@ -21,5 +21,7 @@ describe('<TOGGLE>', () => {
     expect(image).toHaveAttribute('src', '/yellowstar.png');
     fireEvent.click(image);
     expect(image).toHaveAttribute('src', '/star.png');
+    fireEvent.click(image);
+    expect(image).toHaveAttribute('src', '/yellowstar.png');
   });
 });

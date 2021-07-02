@@ -1,12 +1,12 @@
-import React, { useCallback, useState, MouseEvent } from 'react';
+import React, { useCallback, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import SortEngeine from '../organisms/SortEngeine';
 import CardGrid from '../organisms/CardGrid';
 import Header from '../organisms/Header';
-import * as API from '../../api/index';
-import { useInfinity } from '../../hooks/useInfinity';
-import { useSelector, useDispatch } from 'react-redux';
-import useScrollRestoration from '../../hooks/useScrollByPageMove';
 import { useRouter } from 'next/router';
+import useScrollRestoration from '../../hooks/useScrollByPageMove';
+import { useInfinity } from '../../hooks/useInfinity';
+import * as API from '../../api/index';
 import * as actions from '../../store/modules/actions';
 import * as TYPE from '../../interface/index';
 
@@ -18,7 +18,6 @@ export default function MainPageTemplate() {
   const { value } = useSelector((state: TYPE.stateProps) => state.order);
   const { card } = useSelector((state: TYPE.stateProps) => state.mainPage);
   useScrollRestoration(router);
-
   //즐겨찾기 등록 api요청
   const handleEnroll = useCallback(async (id: string) => {
     try {

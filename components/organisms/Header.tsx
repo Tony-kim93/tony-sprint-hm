@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
-import styled from 'styled-components';
 import Link from 'next/link';
 import Heading from '../atoms/Heading';
+import styled from 'styled-components';
 
 const Header = memo(() => (
   <HeaderWrapper>

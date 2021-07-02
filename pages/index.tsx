@@ -1,10 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
-import * as actions from '../store/modules/actions';
-import { wrapper } from '../store/store';
-import { GetStaticProps } from 'next';
 import { END } from '@redux-saga/core';
+import { GetStaticProps } from 'next';
+import styled from 'styled-components';
+import { wrapper } from '../store/store';
 import MainPageTemplate from '../components/templates/MainPageTemplate';
+import * as actions from '../store/modules/actions';
 
 const Home = () => {
   return (

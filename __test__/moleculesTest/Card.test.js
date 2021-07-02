@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Card from '../../components/molcules/Card';
+import Card from '../../components/molecules/Card';
 
 describe('<CARD>', () => {
   it('test card component', () => {

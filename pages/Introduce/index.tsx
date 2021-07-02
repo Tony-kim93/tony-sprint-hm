@@ -7,7 +7,7 @@ import * as S from '../../styles/globalStyles';
 import * as API from '../../api/index';
 
 const Introduce = ({ data }: any) => {
-  const [members, setMembers] = useState<any>([]);
+  const [members, setMembers] = useState<string[]>([]);
   useEffect(() => {
     axios.get(API.MEMBER).then((res) => setMembers(res.data));
   }, []);
@@ -29,6 +29,7 @@ const Introduce = ({ data }: any) => {
     </S.IntroducePage>
   );
 };
+export default Introduce;
 
 export async function getStaticProps() {
   const res = await fetch(API.INTRO);
@@ -37,5 +38,3 @@ export async function getStaticProps() {
     props: { data }
   };
 }
-
-export default Introduce;

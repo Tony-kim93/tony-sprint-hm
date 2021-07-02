@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
-import styled from 'styled-components';
-import { useRouter } from 'next/router';
-import Button from '../../components/atoms/Button';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+import Button from '../../components/atoms/Button';
 import Error from '../404';
-import Card from '../../components/molcules/Card';
-import Toggle from '../../components/molcules/Toggle';
+import Card from '../../components/molecules/Card';
+import Toggle from '../../components/molecules/Toggle';
+import styled from 'styled-components';
 import * as API from '../../api/index';
 import * as S from '../../styles/globalStyles';
 import * as TYPE from '../../interface/index';

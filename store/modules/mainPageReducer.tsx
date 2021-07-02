@@ -32,22 +32,6 @@ export const getMainCardSuccess = createAction(
     };
   }
 );
-// export const getMainCardFailure = createAction(
-//   GET_MAIN_CARD_FAILURE,
-//   function prepare(asd: any) {
-//     return {
-//       payload: asd
-//     }
-//   }
-// );
-// export const getMainCardLoading = createAction(
-//   GET_MAIN_CARD_LOADING,
-//   function prepare(www: any) {
-//     return {
-//       payload: www
-//     };
-//   }
-// );
 
 export const getMainCardOrder = createAction(
   GET_MAIN_CARD_ORDER,

@@ -1,15 +1,14 @@
 import React, { memo } from 'react';
-import Card from '../molcules/Card';
-import * as S from '../../styles/globalStyles';
+import Card from '../molecules/Card';
 import Link from 'next/link';
-import Toggle from '../molcules/Toggle';
+import Toggle from '../molecules/Toggle';
 import * as TYPE from '../../interface/index';
+import * as S from '../../styles/globalStyles';
 
 interface CardGridProps {
   handleEnroll: (id: string) => void;
   handleCancel: (enjoyId: number) => void;
   useInfinity?: (pageSet: number, value: string) => void;
-  //generics
   card: any;
   value: string;
 }

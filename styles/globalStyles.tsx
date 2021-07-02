@@ -195,9 +195,3 @@ export const IntroducePage = styled.div`
     margin-top: 25px;
   }
 `;
-// export const GridLikeCard = styled.div`
-//   display: grid;
-//   grid-column-gap: 50px;
-//   grid-template-columns: auto auto auto auto;
-//   margin-top: 25px;
-// `;

@@ -12,7 +12,6 @@ app.use(express.json());
 app.use(helmet());
 app.use(cors());
 app.use(morgan('tiny'));
-
 app.use('/hm', hmRouter);
 app.use('/fcm', fcmRouter);
 

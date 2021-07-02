@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import Heading from '../atoms/Heading';
 import Button from '../atoms/Button';
-import Card from '../molcules/Card';
+import Card from './Card';
 import * as S from '../../styles/globalStyles';
 import * as TYPE from '../../interface/index';
 

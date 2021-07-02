@@ -16,10 +16,12 @@ function restoreScroll(scrollPosition: string) {
 export default function useScrollRestoration(router: any) {
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
+      //asPath => basePath, locale로 구성된걸 신경안쓰고 경로(쿼리포함) 브라우저에서 보여준다.
       restoreScroll(router.asPath);
       const onRouteChangeStart = () => {
         saveScroll(router.asPath);
       };
+      //routeChangeStart =>경로변경되면 시작함.
       Router.events.on('routeChangeStart', onRouteChangeStart);
       return () => {
         Router.events.off('routeChangeStart', onRouteChangeStart);

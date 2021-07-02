@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Button from '../atoms/Button';
-import * as S from '../../styles/globalStyles';
-import * as API from '../../api/index';
-import Modal from '../molcules/Modal';
+import Modal from '../molecules/Modal';
 import Img from '../atoms/Img';
+import * as API from '../../api/index';
 import * as TYPE from '../../interface/index';
+import * as S from '../../styles/globalStyles';
 
 export default function ProfilePageTemplate() {
   const [isModal, setIsModal] = useState<boolean>(false);
@@ -113,18 +113,17 @@ export default function ProfilePageTemplate() {
       )}
       {isVisible && (
         <S.GridLikeCard>
-          {enjoy &&
-            enjoy.map((item: any) => (
-              <div key={item.id}>
-                <Img
-                  src={item.image.url}
-                  type="cardImg"
-                  alt="test"
-                  width={100}
-                  height={100}
-                />
-              </div>
-            ))}
+          {enjoy?.map((item: any) => (
+            <div key={item.id}>
+              <Img
+                src={item.image.url}
+                type="cardImg"
+                alt="test"
+                width={100}
+                height={100}
+              />
+            </div>
+          ))}
         </S.GridLikeCard>
       )}
     </S.ProfileWrapper>

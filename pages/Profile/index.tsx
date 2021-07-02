@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Paragraph from '../../components/atoms/Paragraph';
-import * as S from '../../styles/globalStyles';
-import Header from '../../components/organisms/Header';
-import * as API from '../../api/index';
 import ProfilePageTemplate from '../../components/templates/ProfilePageTemplate';
+import Paragraph from '../../components/atoms/Paragraph';
+import Header from '../../components/organisms/Header';
+import * as S from '../../styles/globalStyles';
+import * as API from '../../api/index';
 
 export default function Profile() {
   const [userAgent, setUserAgent] = useState<string>('');
