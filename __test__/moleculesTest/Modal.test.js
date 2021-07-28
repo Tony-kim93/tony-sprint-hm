@@ -6,6 +6,7 @@ describe('<MODAL>', () => {
   it('test modal', () => {
     const handleModal = jest.fn();
     const { getByText } = render(<Modal handleModal={handleModal} />);
+
     expect(screen.getByRole('button')).toBeTruthy();
     expect(screen.getByRole('heading')).toBeTruthy();
     expect(getByText('EXIT')).toBeInTheDocument();

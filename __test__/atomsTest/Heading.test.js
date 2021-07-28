@@ -6,6 +6,7 @@ describe('<HEADING>', () => {
   it('test h1 tag', () => {
     const text = 'text';
     const { getByText } = render(<Heading text={text} />);
+
     expect(getByText('text')).toBeInTheDocument();
     expect(getByText('text')).toMatchSnapshot();
   });

@@ -9,6 +9,7 @@ describe('<INPUT>', () => {
     const { getByPlaceholderText } = render(
       <Input placeholder={placeholder} handleChange={handleChange} />
     );
+
     expect(getByPlaceholderText(/search/i)).toBeInTheDocument();
     fireEvent.change(getByPlaceholderText(/search/i), {
       target: {

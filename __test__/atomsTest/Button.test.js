@@ -7,6 +7,7 @@ describe('<BUTTON>', () => {
     const name = 'text';
     const onClick = jest.fn();
     const { getByText } = render(<Button name={name} onClick={onClick} />);
+
     expect(getByText(/text/i)).toBeInTheDocument();
     expect(getByText(/text/i)).toMatchSnapshot();
     fireEvent.click(getByText(/text/i));

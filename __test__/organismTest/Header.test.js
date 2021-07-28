@@ -22,7 +22,6 @@ describe('<HEADER>', () => {
       pathname: '/'
     });
   });
-
   it('test routes /Profile is work', () => {
     router.push({
       pathname: '/Profile'
@@ -32,7 +31,6 @@ describe('<HEADER>', () => {
       pathname: '/Profile'
     });
   });
-
   it('test routes /Register is work', () => {
     router.push({
       pathname: '/Register'
