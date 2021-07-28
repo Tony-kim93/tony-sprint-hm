@@ -7,7 +7,6 @@ describe('<CARD>', () => {
     render(<Card />);
     expect(screen.getByRole('img')).toBeTruthy();
   });
-
   it('conditional renderting', async () => {
     const breedGroup = 'test';
     const name = 'test2';

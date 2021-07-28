@@ -16,6 +16,7 @@ describe('<TOGGLE>', () => {
     const handleToggle = jest.fn();
     render(<Toggle src1={src1} src2={src2} handleToggle={handleToggle} />);
     const image = screen.getByRole('img');
+
     expect(image).toHaveAttribute('src', '/star.png');
     fireEvent.click(image);
     expect(image).toHaveAttribute('src', '/yellowstar.png');

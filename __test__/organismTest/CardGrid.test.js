@@ -11,6 +11,7 @@ describe('<CARD_GRID>', () => {
       pathname: '/Detail/[id]',
       query: { id: 'id', imageId: 'imageId' }
     });
+
     expect(router).toMatchObject({
       asPath: '/Detail/id?imageId=imageId',
       pathname: '/Detail/[id]',
