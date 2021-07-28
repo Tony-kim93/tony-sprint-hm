@@ -89,6 +89,7 @@ export default function ProfilePageTemplate() {
   const handleRegist = () => {
     setIsRegist(!isRegist);
   };
+
   return (
     <S.ProfileWrapper>
       <Button name="like" type="likeBtn" onClick={handleLikeData} />

@@ -13,10 +13,10 @@ import * as TYPE from '../../interface/index';
 export default function MainPageTemplate() {
   const [input, setInput] = useState<string>('');
   const dispatch = useDispatch();
-  const sendTypeInput = ['jpg', 'png', 'gif'];
   const router = useRouter();
   const { value } = useSelector((state: TYPE.stateProps) => state.order);
   const { card } = useSelector((state: TYPE.stateProps) => state.mainPage);
+  const sendTypeInput = ['jpg', 'png', 'gif'];
   useScrollRestoration(router);
   //즐겨찾기 등록 api요청
   const handleEnroll = useCallback(async (id: string) => {

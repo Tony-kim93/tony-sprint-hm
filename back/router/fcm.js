@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
   }
 
   let fcm_target_token =
-    'dG036TneAp39RvqTlwUDa4:APA91bGHdT4bkcraUlaLKjnMDDSYhxIOGvN9srhvT800f2ItSmyZqOVss8ar3pKu2hd8OGycHzZvCXkAFjOwhnGQyaqv0UixtANStSi2FFiK7kbkKI49Cr5P9z7uYu4jI_H-zvis2rcO';
+    'dG036TneAp39RvqTlwUDa4:APA91bGWSDEIb3Ad1whyLBGqlzVuJX-_h3l7OPPAvCcg8-eeqqf2T-unnwOlD7hcdcB8Du3vajlZmnLqQubKNbTDYGCF8ruTnFeF_P-lE6AZxWTtugShCkcFR1vA55yvbQbNsw9fFEjs';
 
   let message = {
     notification: {
