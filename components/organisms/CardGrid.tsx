@@ -19,9 +19,11 @@ const CardGrid = memo(
       let pageSet = 0;
       useInfinity(pageSet, value);
     }
+
+    const isCard = card.length > 3;
     return (
       <S.GridMainCard>
-        {card.length > 5 ? (
+        {isCard ? (
           card.map((item: TYPE.cardProps) => {
             return (
               <S.CardWrapper key={item.id}>

@@ -2,6 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import CardGrid from '../../components/organisms/CardGrid';
 import router, { useRouter } from 'next/router';
+import axios from 'axios';
+import mainPage from '../../fixture/mainPage';
 
 jest.mock('next/router', () => require('next-router-mock'));
 
