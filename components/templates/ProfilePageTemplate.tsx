@@ -18,6 +18,9 @@ export default function ProfilePageTemplate() {
     return item.image_id;
   });
 
+  // async / await /// Fix => 코드정리
+  // api 관련 처리 모듈화 좋은방법이 아님 반복적으로 써야함
+  // 함수를 나누던 ㅎ하야지  Promise.all처리 다시 생각해보기
   const getLikeData = (idArr: string[]) => {
     const result = Promise.all(
       idArr.map((id: string) => {
@@ -32,6 +35,7 @@ export default function ProfilePageTemplate() {
   //내가 좋아요한 데이터 가져오기
   useEffect(() => {
     getLikeData(findDataId)
+      //반복적인거 제거
       .then((data) => setDatas(data))
       .catch((err) => console.log(err));
   }, [like]);
@@ -82,6 +86,7 @@ export default function ProfilePageTemplate() {
       .catch((error) => console.log(error));
   };
 
+  //Fix => 함수 네이밍
   const handleModal = () => {
     setIsModal(!isModal);
   };

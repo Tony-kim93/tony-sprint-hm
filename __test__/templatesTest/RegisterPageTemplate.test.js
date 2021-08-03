@@ -1,6 +1,6 @@
 import RegisterPageTemplate from '../../components/templates/RegisterPageTemplate';
 import axios from 'axios';
-import { render, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 describe('<RegisterPageTemplate>', () => {
   it('test registerPageTemplate is rendered', () => {
@@ -11,10 +11,14 @@ describe('<RegisterPageTemplate>', () => {
     expect(getByText(/upload/i)).toBeInTheDocument();
   });
 
-  it('test registerPageTemplate data', () => {
-    const { getByText } = render(<RegisterPageTemplate />);
-    const spyGet = jest.spyOn(axios, 'get');
-    expect(spyGet).toBeCalledTimes(0);
-    expect(getByText(/upload/i)).toBeInTheDocument();
-  });
+  // it('test registerPageTemplate data', () => {
+  //   const { getByText } = render(<RegisterPageTemplate />);
+  //   const handleUpload = jest.fn();
+  //   const spyGet = jest.spyOn(axios, 'get');
+  //   const image = screen.getByRole('img');
+  //   expect(spyGet).toBeCalledTimes(0);
+  //   expect(getByText(/upload/i)).toBeInTheDocument();
+  //   fireEvent.click(getByText(/upload/i));
+  //   expect(image).toBeTruthy();
+  // });
 });

@@ -20,6 +20,7 @@ export default function MainPageTemplate() {
   useScrollRestoration(router);
   //즐겨찾기 등록 api요청
   const handleEnroll = useCallback(async (id: string) => {
+    //반복적인 try, catch 해결해야함(공통처리)
     try {
       const result = await API.sendFavourites({
         image_id: id,
@@ -45,7 +46,9 @@ export default function MainPageTemplate() {
   );
 
   // sendTypeInput을 활용해 검색 api요청
+  // Fix = > 네이밍
   const searchById = useCallback(() => {
+    // Fix  => 상수 표시 upper case로 변경
     if (sendTypeInput.includes(input)) {
       dispatch(actions.getSearchCard(`${API.queryTypes.mime}${input}`));
     } else {
@@ -62,9 +65,9 @@ export default function MainPageTemplate() {
     dispatch(actions.changeOrder('DESC'));
   }, []);
 
+  // Fix => 함수 네이밍 선언 => handle~ 전달된것 => on~
   return (
     <>
-      <div>test</div>
       <Header />
       <SortEngeine
         handleChange={handleChange}

@@ -19,8 +19,14 @@ const CardGrid = memo(
       let pageSet = 0;
       useInfinity(pageSet, value);
     }
-
     const isCard = card.length > 3;
+
+    // Fix => 분리 하기 isCard / card.length === 1 인경우 나누기
+    // const renderA = () => {
+    //   if(){
+    //     return
+    //   }
+    // }
     return (
       <S.GridMainCard>
         {isCard ? (

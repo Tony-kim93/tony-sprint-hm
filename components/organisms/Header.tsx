@@ -24,6 +24,7 @@ const Header = memo(() => (
 ));
 export default Header;
 
+//네이밍 규칙
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-around;

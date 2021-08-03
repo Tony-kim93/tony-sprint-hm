@@ -68,7 +68,7 @@ export default function RegisterPageTemplate({ token }: registerProps) {
   return (
     <S.RegisterWrapper>
       <Header />
-      <Img type="previewImg" src={createObjectURL} alt="" />
+      <Img type="previewImg" src={createObjectURL} alt="asdf" />
       <Input accept="image/*" handleChange={handleChange} type="file" />
       <Button name="upload" onClick={handleUpload} />
       <progress className="registerProgress" max="100" value={progress} />
